@@ -33,7 +33,7 @@
                              @if ( $transaction->tr_status == 1)
                                  <a href="#" class="label-success label">Đã xử lý</a>
                              @else
-                                 <a href="" class="label label-default">Chờ xử lý</a>
+                                 <a href="{{ route('admin.get.active.transaction',$transaction->id) }}" class="label label-default">Chờ xử lý</a>
                              @endif
                          </td>
                          <td>

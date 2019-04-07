@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function() {
 	Route::group(['prefix' => 'transaction'], function(){
 		Route::get('/','AdminTransactionController@index')->name('admin.get.list.transaction');
 		Route::get('/view/{id}','AdminTransactionController@viewOrder')->name('admin.get.view.order');
+		Route::get('/active/{id}','AdminTransactionController@actionTransaction')->name('admin.get.active.transaction');
 	});
 	
 	// ql thanh vien

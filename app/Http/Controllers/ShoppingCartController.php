@@ -17,7 +17,7 @@ class ShoppingCartController extends Controller
 	 */
     public function addProduct(Request $request,$id)
 	{
-	    $product = Product::select('pro_name','id','pro_price','pro_sale','pro_avatar')->find($id);
+	    $product = Product::select('pro_name','id','pro_price','pro_sale','pro_avatar','pro_number')->find($id);
 	    
 	    if (!$product) return redirect('/');
 		
@@ -25,6 +25,11 @@ class ShoppingCartController extends Controller
 	    if ($product->pro_sale)
 		{
 			$price =  $price * (100 - $product->pro_sale)/ 100;
+		}
+		
+		if ($product->pro_number == 0 )
+		{
+			return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
 		}
 		
 		\Cart::add([
@@ -39,7 +44,7 @@ class ShoppingCartController extends Controller
 			],
 		]);
 		
-		return redirect()->back();
+		return redirect()->back()->with('success','Mua hàng thành công');
 	}
 	
 	public function deleteProductItem($key)
