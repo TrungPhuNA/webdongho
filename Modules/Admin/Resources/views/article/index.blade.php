@@ -59,5 +59,8 @@
                  @endif
             </tbody>
         </table>
+        <div>
+            {!! $articles->links() !!}
+        </div>
     </div>
 @stop
