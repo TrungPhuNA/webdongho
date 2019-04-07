@@ -71,6 +71,7 @@
                                          </span>
                                          <span>{{ $age }}</span>
                                      </li>
+                                     <li><span>Số lượng </span> <span>{{ $product->pro_number }}</span></li>
                                  </ul>
                              </td>
                              <td>{{ isset($product->category->c_name) ? $product->category->c_name  : '[N\A]' }}</td>
