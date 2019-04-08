@@ -6,26 +6,25 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="single-snap-footer">
                         <div class="snap-footer-title">
-                            <h4>Company info</h4>
+                            <h4>Thông tin công ty</h4>
                         </div>
                         <div class="cakewalk-footer-content">
-                            <p class="footer-des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim adm.</p>
-                            <a href="#" class="read-more">Read more</a>
+                            <p class="footer-des">Vị thế của bóng đá Anh đang trở lại mạnh mẽ. Sau 48 năm, có tới 6 đội xuất sắc ghi danh vào tứ kết các cúp châu Âu. Và cũng là lần đầu tiên kể từ năm 2009, 4 đội bóng Anh cùng lúc góp mặt ở tứ kết Champions League gồm MU, Man City, Tottenham và Liverpool.</p>
+                            <a href="#" class="read-more">Xem thêm ...</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <div class="single-snap-footer">
                         <div class="snap-footer-title">
-                            <h4>Information</h4>
+                            <h4>Thông tin</h4>
                         </div>
                         <div class="cakewalk-footer-content">
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms & Condition</a></li>
+                                <li><a href="#">Về chúng tôi</a></li>
+                                <li><a href="#">Thông tin giao hàng</a></li>
+                                <li><a href="#">Chính sách bảo mật</a></li>
+                                <li><a href="#">Điều khoản sử dụng</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,15 +32,14 @@
                 <div class="col-md-2 col-sm-4">
                     <div class="single-snap-footer">
                         <div class="snap-footer-title">
-                            <h4>Fashion Tags</h4>
+                            <h4>Tài khoản</h4>
                         </div>
                         <div class="cakewalk-footer-content">
                             <ul>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">My Cart</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Checkout</a></li>
+                                <li><a href="#">Tổng quan</a></li>
+                                <li><a href="#">Đăng nhập</a></li>
+                                <li><a href="#">Giỏ hàng</a></li>
+                                <li><a href="#">Sản phẩm yêu thích</a></li>
                             </ul>
                         </div>
                     </div>
@@ -49,15 +47,12 @@
                 <div class="col-md-2 hidden-sm">
                     <div class="single-snap-footer">
                         <div class="snap-footer-title">
-                            <h4>Fashion Tags</h4>
+                            <h4>Thông tin khác</h4>
                         </div>
                         <div class="cakewalk-footer-content">
                             <ul>
-                                <li><a href="#">Sitemap</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Advanced Search</a></li>
                                 <li><a href="#">Affiliates</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -65,7 +60,7 @@
                 <div class="col-md-2 hidden-sm">
                     <div class="single-snap-footer">
                         <div class="snap-footer-title">
-                            <h4>Follow Us</h4>
+                            <h4>Theo dõi</h4>
                         </div>
                         <div class="cakewalk-footer-content social-footer">
                             <ul>
@@ -91,8 +86,8 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <div class="infof-content">
-                            <h3>Our Address</h3>
-                            <p>Main Street, Banasree, Dhaka</p>
+                            <h3>Địa chỉ</h3>
+                            <p>Xóm 3 - Quỳnh Ngọc - Quỳnh Lưu - Nghệ An</p>
                         </div>
                     </div>
                 </div>
@@ -102,8 +97,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="infof-content">
-                            <h3>Phone Support</h3>
-                            <p>+88 0173 7803547</p>
+                            <h3>Số điện thoại</h3>
+                            <p>0986.420.994</p>
                         </div>
                     </div>
                 </div>
@@ -114,7 +109,7 @@
                         </div>
                         <div class="infof-content">
                             <h3>Email Support</h3>
-                            <p>admin@bootexperts.com</p>
+                            <p>phupt.humg.94@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +119,7 @@
                             <i class="fa fa-clock-o"></i>
                         </div>
                         <div class="infof-content">
-                            <h3>Openning Hour</h3>
+                            <h3>Giờ làm việc</h3>
                             <p>Sat - Thu : 9:00 am - 22:00 pm</p>
                         </div>
                     </div>
@@ -132,63 +127,11 @@
             </div>
         </div>
     </div>
-    <!-- info footer end -->
-    <!-- banner footer area start -->
-    {{--<div class="banner-footer">--}}
-        {{--<div class="container-fluid">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-md-2 col-sm-2 col-xs-3 nopadding">--}}
-                    {{--<div class="single-bannerfooter">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-1.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2 col-sm-2 col-xs-3 nopadding">--}}
-                    {{--<div class="single-bannerfooter">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-2.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2 col-sm-2 col-xs-3 nopadding">--}}
-                    {{--<div class="single-bannerfooter">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-3.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2 col-sm-2 col-xs-3 nopadding">--}}
-                    {{--<div class="single-bannerfooter">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-4.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2 col-sm-2 hidden-xs nopadding">--}}
-                    {{--<div class="single-bannerfooter">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-5.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2 col-sm-2 hidden-xs nopadding">--}}
-                    {{--<div class="single-bannerfooter last-single">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/banner/footer-6.jpg" alt="" />--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    <!-- banner footer area end -->
-    <!-- footer address area start -->
     <div class="address-footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <address>Copyright © <a href="http://bootexperts.com/">BootExperts.</a> All Rights Reserved</address>
+                    <address>Copyright © <a href="">TrungPhuNA</a> All Rights Reserved</address>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="footer-payment pull-right">

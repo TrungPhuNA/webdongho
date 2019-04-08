@@ -11,10 +11,10 @@
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
                             <li class="home">
-                                <a href="">Bài viết</a>
+                                <a href="{{ route('get.list.article') }}" title="Bài viết">Bài viết</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
-                            <li class="category3"><span>CÁCH CHÈN THÊM NHẠC VÀO POWERPOINT</span></li>
+                            <li class="category3"><span>{{ $articleDetail->a_name }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -25,13 +25,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="article_content">
-                        <h1>CÁCH CHÈN THÊM NHẠC VÀO POWERPOINT</h1>
-                        <p>Bạn muốn làm cho PowerPoint của mình thêm phần sinh động hơn cuốn hút hơn? Bạn có thể tham khảo cách chèn nhạc vào cho PowerPoint</p>
+                    <div class="article_content" style="margin-bottom: 20px">
+                        <h1>{{ $articleDetail->a_name }}</h1>
+                        <p style="font-weight: 500;color: #333">{{ $articleDetail->a_description }}</p>
                         <div>
-                            
+                             {!! $articleDetail->a_content !!}
                         </div>
                     </div>
+                    <h4>Bài viết khác</h4>
                     @include('components.article')
                 </div>
                 <div class="col-sm-4">

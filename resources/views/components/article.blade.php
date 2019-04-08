@@ -13,4 +13,5 @@
             </div>
         </div>
     @endforeach
+    {!! $articles->links() !!}
 @endif
