@@ -23,7 +23,7 @@ class CategoryController extends FrontendController
 			$products = Product::where([
 				'pro_category_id' => $id,
 				'pro_active'      => Product::STATUS_PUBLIC
-			])->orderBy('id','DESC')->paginate(10);
+			])->orderBy('id','DESC')->paginate(9);
 			
 			$cateProduct = Category::find($id);
 			
