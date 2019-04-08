@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .article_content h2 { font-size: 1.4rem}
+        .article_content  { font-family:  Roboto, sans-serif;}
+    </style>
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
