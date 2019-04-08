@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
+    <style>
+        .sidebar-content .active
+        {
+            color: #c2a476;
+        }
+    </style>
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs">
         <div class="container">
@@ -38,12 +43,12 @@
                                 <h6>Khoảng giá</h6>
                             </div>
                             <ul>
-                                <li><a href="#"> Dưới 1tr </a></li>
-                                <li><a href="#"> 1.000.000 - 3.000.000 đ </a></li>
-                                <li><a href="#"> 3.000.000 - 5.000.000 đ </a></li>
-                                <li><a href="#"> 7.000.000 - 7.000.000 đ </a></li>
-                                <li><a href="#"> 7.000.000 - 10.000.000 đ </a></li>
-                                <li><a href="#"> lớn hơn 10.000.000 đ </a></li>
+                                <li><a class="{{ Request::get('price') == 1 ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1]) }}"> Dưới 1tr </a></li>
+                                <li><a class="{{ Request::get('price') == 2 ? 'active' : '' }}" href="{{  request()->fullUrlWithQuery(['price' => 2]) }} "> 1.000.000 - 3.000.000 đ </a></li>
+                                <li><a class="{{ Request::get('price') == 3 ? 'active' : '' }}" href="{{  request()->fullUrlWithQuery(['price' => 3]) }}"> 3.000.000 - 5.000.000 đ </a></li>
+                                <li><a class="{{ Request::get('price') == 4 ? 'active' : '' }}" href="{{  request()->fullUrlWithQuery(['price' => 4]) }} "> 5.000.000 - 7.000.000 đ </a></li>
+                                <li><a class="{{ Request::get('price') == 5 ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 5]) }} "> 7.000.000 - 10.000.000 đ </a></li>
+                                <li><a class="{{ Request::get('price') == 6 ? 'active' : '' }}" href="{{  request()->fullUrlWithQuery(['price' => 6]) }} "> lớn hơn 10.000.000 đ </a></li>
                             </ul>
                         </aside>
 
@@ -71,15 +76,15 @@
                     <div class="shop-content-area">
                         <div class="shop-toolbar">
                             <div class="col-xs-12 nopadding-left ">
-                                <form class="tree-most" method="get">
+                                <form class="tree-most" id="form_order" method="get">
                                     <div class="orderby-wrapper pull-right">
                                         <label>Sắp xếp</label>
                                         <select name="orderby" class="orderby">
-                                            <option value="menu_order" selected="selected">Mặc định</option>
-                                            <option value="popularity">Mới nhất</option>
-                                            <option value="rating">Sản phẩm cũ</option>
-                                            <option value="date">Giá tăng dần</option>
-                                            <option value="price">Giá giảm dần</option>
+                                            <option {{ Request::get('orderby') == "md" || !Request::get('orderby') ? "selected='selected'" : "" }} value="md" selected="selected">Mặc định</option>
+                                            <option {{ Request::get('orderby') == "desc" ? "selected='selected'" : "" }} value="desc">Mới nhất</option>
+                                            <option {{ Request::get('orderby') == "asc" ? "selected='selected'" : "" }} value="asc">Sản phẩm cũ</option>
+                                            <option {{ Request::get('orderby') == "price_max" ? "selected='selected'" : "" }} value="price_max">Giá tăng dần</option>
+                                            <option {{ Request::get('orderby') == "price_min" ? "selected='selected'" : "" }} value="price_min">Giá giảm dần</option>
                                         </select>
                                     </div>
                                 </form>
@@ -149,7 +154,6 @@
                         <!-- shop toolbar start -->
                         <div class="shop-content-bottom">
                             <div class="shop-toolbar btn-tlbr">
-
                                 <div class="col-md-4 col-sm-4 col-xs-12 text-center">
                                     <div class="pages">
                                          {!! $products->links() !!}
@@ -182,4 +186,15 @@
             </div>
         </div>
     </div>
+@stop
+
+
+@section('script')
+    <script>
+        $(function () {
+            $('.orderby').change(function () {
+                $("#form_order").submit();
+			})
+		})
+    </script>
 @stop

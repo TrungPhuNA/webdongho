@@ -18,6 +18,7 @@
                 <th>Số điện thoại</th>
                 <th>Tổng Tiền</th>
                 <th>Trạng thái</th>
+                <th>Time</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
@@ -35,6 +36,9 @@
                              @else
                                  <a href="{{ route('admin.get.active.transaction',$transaction->id) }}" class="label label-default">Chờ xử lý</a>
                              @endif
+                         </td>
+                         <td>
+                             {{ $transaction->created_at->format('d-m-Y') }}
                          </td>
                          <td>
                              <a class="btn_customer_action" href=""><i class="fas fa-trash-alt"></i> Xoá</a>

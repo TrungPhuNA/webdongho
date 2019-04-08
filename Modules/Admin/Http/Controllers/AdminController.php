@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Rating;
+use App\Models\Transaction;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
@@ -20,9 +21,53 @@ class AdminController extends Controller
 		
 		$contacts = Contact::limit(10)->get();
 		
+		// doanh thu ngay
+		
+		$moneyDay = Transaction::whereDay('updated_at',date('d'))
+			->where('tr_status',Transaction::STATUS_DONE)
+			->sum('tr_total');
+		
+		
+		// doanh thu thag
+		
+		$moneyMonth = Transaction::whereMonth('updated_at',date('m'))
+			->where('tr_status',Transaction::STATUS_DONE)
+			->sum('tr_total');
+		
+		$dataMoney = [
+			[
+				"name" => "Doanh thu ngày",
+				"y"    => (int)$moneyDay
+			],
+			[
+				"name" => "Doanh thu tuần",
+				"y"    => (int)$moneyDay
+			],
+			[
+				"name" => "Doanh thu tháng",
+				"y"    => (int)$moneyDay
+			],
+			[
+				"name" => "Doanh thu năm",
+				"y"    => (int)$moneyMonth
+			]
+		];
+		
+		// danh sach don hang moi
+		
+		$transactionNews = Transaction::with('user:id,name')
+			->limit(5)
+			->orderByDesc('id')
+			->get();
+		
+		
 		$viewData = [
 			'ratings'  => $ratings,
 			'contacts' => $contacts,
+			'moneyDay' => $moneyDay,
+			'moneyMonth' => $moneyMonth,
+			'dataMoney' => json_encode($dataMoney),
+			'transactionNews' => $transactionNews
 		];
 		
 		return view('admin::index', $viewData);
