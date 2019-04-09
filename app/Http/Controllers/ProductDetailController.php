@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductDetailController extends FrontendController
 {
@@ -26,7 +27,13 @@ class ProductDetailController extends FrontendController
 			$cateProduct = Category::find($productDetail->pro_category_id);
 			
 			$ratings = Rating::with('user:id,name')
-				->where('ra_product_id',$id)->orderBy('id',"DESC")->paginate(10);
+				->where('ra_product_id',$id)
+				->orderBy('id',"DESC")
+				->paginate(10);
+			
+//			$totalRatings = DB::table('ratings')
+//				->groupBy('ra_number')
+//				->get();
 			
 			$viewData = [
 				'productDetail' => $productDetail,

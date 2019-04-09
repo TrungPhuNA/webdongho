@@ -54,7 +54,7 @@ Route::prefix('admin')->group(function() {
 		Route::get('/','AdminUserController@index')->name('admin.get.list.user');
 	});
 	
-	// ql thanh vien
+	// ql danh gia
 	Route::group(['prefix' => 'rating'], function(){
 		Route::get('/','AdminRatingController@index')->name('admin.get.list.rating');
 	});
@@ -64,5 +64,13 @@ Route::prefix('admin')->group(function() {
 	Route::group(['prefix' => 'contact'],function (){
 	     Route::get('/','AdminContactController@index')->name('admin.get.list.contact');
 		Route::get('/action/{name}/{id}','AdminContactController@action')->name('admin.action.contact');
+	});
+	
+	Route::group(['prefix' => 'page-static'],function (){
+		Route::get('/','AdminPageStaticController@index')->name('admin.get.list.page_static');
+		Route::get('/create','AdminPageStaticController@create')->name('admin.get.create.page_static');
+		Route::post('/create','AdminPageStaticController@store');
+		Route::get('/update/{id}','AdminPageStaticController@edit')->name('admin.get.edit.page_static');
+		Route::post('/update/{id}','AdminPageStaticController@update');
 	});
 });
