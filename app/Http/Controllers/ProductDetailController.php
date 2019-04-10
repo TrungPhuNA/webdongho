@@ -31,14 +31,45 @@ class ProductDetailController extends FrontendController
 				->orderBy('id',"DESC")
 				->paginate(10);
 			
-//			$totalRatings = DB::table('ratings')
-//				->groupBy('ra_number')
-//				->get();
+			// gom nhóm lại tổng xem 
+			$ratingsDashboard = Rating::groupBy('ra_number')
+				->where('ra_product_id',$id)
+				->select(DB::raw('count(ra_number) as total'),DB::raw('sum(ra_number) as sum'))
+				->addSelect('ra_number')
+				->get()->toArray();
+			
+			
+			
+			$arrayRatings = [];
+			
+			if (!empty($ratingsDashboard))
+			{
+				for ($i = 1; $i <= 5 ; $i ++ )
+				{
+					$arrayRatings[$i] = [
+						"total" => 0,
+						"sum" => 0,
+						"ra_number" => 0
+					];
+					
+					foreach ($ratingsDashboard as $item)
+					{
+						if ($item['ra_number'] == $i)
+						{
+							$arrayRatings[$i] = $item;
+							continue;
+						}
+					}
+				}
+			}
+			
+			
 			
 			$viewData = [
 				'productDetail' => $productDetail,
 				'cateProduct'   => $cateProduct,
-				'ratings'       => $ratings
+				'ratings'       => $ratings,
+				'arrayRatings'  => $arrayRatings
 			];
 			
 			return view('product.detail',$viewData);
