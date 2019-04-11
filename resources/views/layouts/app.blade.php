@@ -84,9 +84,9 @@
 
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <style>
-        #ju3kib5-1555008237200 ,#EtgGtns-1555008374911 ,#mi8wPDs-1555008374925
+        #scrollUp
         {
-            left: 10px !important;
+            bottom: 150px !important;
         }
         
     </style>
