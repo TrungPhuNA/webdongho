@@ -3,6 +3,7 @@ input {
     height: 36px;
     border: solid 1px #dcdcdc;
     text-indent: 10px;
+    box-sizing: border-box;
 }
 
 input:focus{

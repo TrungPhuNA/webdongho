@@ -29,4 +29,26 @@
         display: flex;
         align-items: center;
     }
+
+    h1 {
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+
+.title_suggest
+{
+    color: #0f5caa;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 400;
 }

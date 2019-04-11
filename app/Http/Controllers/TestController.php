@@ -10,4 +10,14 @@ class TestController extends Controller
 	{
 		return view('template.index');
 	}
+	
+	public function category()
+	{
+		return view('template.category');
+	}
+	
+	public function detail()
+	{
+		return view('template.detail');
+	}
 }

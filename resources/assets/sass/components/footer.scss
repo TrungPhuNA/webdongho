@@ -1,0 +1,31 @@
+.footer
+{
+    &_nav
+    {
+        border-top: 1px solid #dedede;
+        ul
+        {
+            text-align: center;
+            padding: 20px;
+            li {
+                display: inline-block;
+                a{
+                    padding: 5px 10px;
+                    margin-right: 5px;
+                    color: #a4a4a4;
+                }
+            }
+        }
+    }
+    
+    &_bottom
+    {
+        background-color: #eee;
+        color: #777;
+        padding: 20px;
+        text-align: center;
+        a {
+            color: #999;
+        }
+    }
+}
