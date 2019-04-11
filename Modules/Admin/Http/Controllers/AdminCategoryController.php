@@ -12,7 +12,7 @@ class AdminCategoryController extends Controller
 {
 	public function index()
 	{
-		$categories = Category::select('id','c_name','c_title_seo','c_active')->get();
+		$categories = Category::select('id','c_name','c_title_seo','c_active','c_home')->get();
 		
 		$viewData = [
 			'categories' => $categories
@@ -82,7 +82,22 @@ class AdminCategoryController extends Controller
 					$category->delete();
 					$messages = 'Xoá dữ liệu thành công';
 					break;
+					
+				case 'home':
+					$category->c_home = $category->c_home == 1 ? 0 : 1;
+					$messages = 'Cập nhật thành công';
+					$category->save();
+					break;
+				
+				case 'active':
+					$category->c_active = $category->c_active == 1 ? 0 : 1;
+					$messages = 'Cập nhật thành công';
+					$category->save();
+					break;
+				
 			}
+			
+			
 		}
 		
 		return redirect()->back()->with('success',$messages);

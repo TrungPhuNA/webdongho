@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="product-details-area">
+    <div class="product-details-area" id="content_product" data-id="{{ $productDetail->id }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-xs-12">
@@ -323,6 +323,31 @@
 					});
                 }
             });
+
+
+			//  luu id san pham vao storage
+			let idProduct = $("#content_product").attr('data-id');
+
+			// lấy giá trị storage
+			let products = localStorage.getItem('products');
+
+			if (products == null)
+            {
+				arrayProduct = new Array();
+				arrayProduct.push(idProduct)
+				localStorage.setItem('products',JSON.stringify(arrayProduct))
+
+            }else
+            {
+				// chuyển về mảng 
+            	 products = $.parseJSON(products)
+
+            	 if ( products.indexOf(idProduct) == -1)
+                 {
+					 products.push(idProduct);
+					 localStorage.setItem('products',JSON.stringify(products))
+				 }
+            }
         });
     </script>
 @stop
