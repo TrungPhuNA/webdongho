@@ -83,6 +83,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
 </head>
 <body class="home-one">
 <!--[if lt IE 8]>
@@ -115,6 +116,9 @@
 @endif
 
 @yield('content')
+<div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="300" data-height="500"></div>
+
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
 <!-- FOOTER START -->
 @include('components.footer')
 <!-- FOOTER END -->
