@@ -79,7 +79,7 @@
             <!-- our-product area end -->
         </div>
     </div>
-
+    @include('components.product_suggest')
     <div id="product_view"></div>
     <!-- product section end -->
     

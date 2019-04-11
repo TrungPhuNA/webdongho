@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends FrontendController
@@ -28,10 +30,41 @@ class HomeController extends FrontendController
 				->limit(3)
 				->get();
 		
+		$productSuggest = [];
+		//Kiểm tra nguồ dùng dang nhap
+		if (get_data_user('web'))
+		{
+			$transactions = Transaction::where([
+				'tr_user_id' => get_data_user('web'),
+				'tr_status'  => Transaction::STATUS_DONE
+			])->pluck('id');
+			
+			if (!empty($transactions))
+			{
+				$listId = Order::whereIn('or_transaction_id',$transactions)->distinct()->pluck('or_product_id');
+				
+				if ( !empty($listId))
+				{
+					
+					$listIdCategory = Product::whereIn('id',$listId)->distinct()->pluck('pro_category_id');
+					
+					if ($listIdCategory)
+					{
+						$productSuggest = Product::whereIn('pro_category_id',$listIdCategory)->limit(8)->get();
+					}
+					
+				}
+				
+			}
+			
+		}
+		// chua dang nhap thi thoi
+		
 		$viewData = [
-			'productHot'  => $productHot,
-			'articleNews' => $articleNews,
-			'categoriesHome'  => $categoriesHome
+			'productHot'     => $productHot,
+			'articleNews'    => $articleNews,
+			'categoriesHome' => $categoriesHome,
+			'productSuggest' => $productSuggest,
 		];
 		
         return view('home.index',$viewData);
