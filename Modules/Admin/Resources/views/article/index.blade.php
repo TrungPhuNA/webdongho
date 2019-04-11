@@ -27,6 +27,7 @@
                     <th width="20%">Tên bài viết</th>
                     <th style="width: 100px">Hình Ảnh</th>
                     <th style="width: 300px">Mô tả</th>
+                    <th>Nổi bật</th>
                     <th>Trạng thái</th>
                     <th>Ngày tạo</th>
                     <th>Thao tác</th>
@@ -44,6 +45,10 @@
                                  <img src="{{ pare_url_file($article->a_avatar) }}" alt="" class="img img-responsive" style="width: 100px;height: 80px;">
                              </td>
                              <td>{{ $article->a_description }}</td>
+                             
+                             <td>
+                                 <a href="{{ route('admin.get.action.article',['hot',$article->id]) }}" class="label {{ $article->getHot($article->a_hot)['class'] }}">{{ $article->getHot($article->a_hot)['name'] }}</a>
+                             </td>
                              <td>
                                  <a href="{{ route('admin.get.action.article',['active',$article->id]) }}" class="label {{ $article->getStatus($article->a_active)['class'] }}">{{ $article->getStatus($article->a_active)['name'] }}</a>
                              </td>

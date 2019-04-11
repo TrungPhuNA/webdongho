@@ -15,7 +15,7 @@ class AdminArticleController extends Controller
 		
 		if ($request->name) $articles->where('a_name','like','%'.$request->name.'%');
 		
-		$articles = $articles->paginate(10);
+		$articles = $articles->orderBy('id','DESC')->paginate(10);
 		
 		$viewData = [
 			'articles' => $articles
@@ -88,12 +88,13 @@ class AdminArticleController extends Controller
 					$article->a_active =  $article->a_active ? 0 : 1;
 					$article->save();
 					break;
-				
-//				case 'hot':
-//					$article->pro_hot =  $article->pro_hot ? 0 : 1 ;
-//					break;
+					
+				case 'hot':
+					$article->a_hot =  $article->a_hot ? 0 : 1 ;
+					break;
 			}
 			
+			$article->save();
 			
 		}
 		
