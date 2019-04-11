@@ -14,7 +14,7 @@ class ArticleController extends FrontendController
 	
     public function getListArticle()
 	{
-		$articles = Article::simplePaginate(5);
+		$articles = Article::orderBy('id','DESC')->simplePaginate(5);
 		
 		return view('article.index',compact('articles'));
 	}
@@ -28,7 +28,7 @@ class ArticleController extends FrontendController
 		if ($id)
 		{
 			$articleDetail = Article::find($id);
-			$articles = Article::paginate(10);
+			$articles = Article::orderBy("id","DESC")->paginate(10);
 			
 			$viewData = [
 				'articles' => $articles,
