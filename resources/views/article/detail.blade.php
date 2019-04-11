@@ -2,7 +2,9 @@
 @section('content')
     <style>
         .article_content h2 { font-size: 1.4rem}
+        .article_content h1 { font-size: 18px !important;line-height: 24px}
         .article_content  { font-family:  Roboto, sans-serif;}
+        .main-contact-area { margin-top: 20px}
     </style>
     <div class="breadcrumbs">
         <div class="container">
