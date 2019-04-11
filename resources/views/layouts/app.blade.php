@@ -83,7 +83,13 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
-
+    <style>
+        #ju3kib5-1555008237200 ,#EtgGtns-1555008374911 ,#mi8wPDs-1555008374925
+        {
+            left: 10px !important;
+        }
+        
+    </style>
 </head>
 <body class="home-one">
 <!--[if lt IE 8]>
