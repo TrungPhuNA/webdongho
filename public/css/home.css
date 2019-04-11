@@ -1,0 +1,465 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.width-5 {
+  width: 5% !important;
+}
+
+.width-10 {
+  width: 10% !important;
+}
+
+.width-15 {
+  width: 15% !important;
+}
+
+.width-20 {
+  width: 20% !important;
+}
+
+.width-25 {
+  width: 25% !important;
+}
+
+.width-30 {
+  width: 30% !important;
+}
+
+.width-35 {
+  width: 35% !important;
+}
+
+.width-40 {
+  width: 40% !important;
+}
+
+.width-45 {
+  width: 45% !important;
+}
+
+.width-50 {
+  width: 50% !important;
+}
+
+.width-55 {
+  width: 55% !important;
+}
+
+.width-60 {
+  width: 60% !important;
+}
+
+.width-65 {
+  width: 65% !important;
+}
+
+.width-70 {
+  width: 70% !important;
+}
+
+.width-75 {
+  width: 75% !important;
+}
+
+.width-80 {
+  width: 80% !important;
+}
+
+.width-85 {
+  width: 85% !important;
+}
+
+.width-90 {
+  width: 90% !important;
+}
+
+.width-95 {
+  width: 95% !important;
+}
+
+.width-100 {
+  width: 100% !important;
+}
+
+.tp_container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  height: 36px;
+  border: solid 1px #dcdcdc;
+  text-indent: 10px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.clearfloat {
+  clear: both;
+}
+
+.title_heading {
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.title_heading h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.title_heading h2 img {
+  margin-right: 5px;
+}
+
+.header_top .nav_top {
+  padding: 5px 0;
+}
+
+.header_top .nav_top ul {
+  width: 100%;
+  text-align: right;
+}
+
+.header_top .nav_top ul li {
+  display: inline-block;
+}
+
+.header_top .nav_top ul li a {
+  padding: 5px 10px;
+  margin-right: 5px;
+  color: #a4a4a4;
+}
+
+.header_top .nav_top ul li a i {
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.header_top .nav_top ul li a:first-child {
+  margin-right: 0;
+}
+
+.header_top .header_content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 15px 0;
+}
+
+.header_top .header_content_logo a img {
+  width: 160px;
+  height: 60px;
+}
+
+.header_top .header_content_search form {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 5px;
+  position: relative;
+}
+
+.header_top .header_content_search form button {
+  position: absolute;
+  right: 10px;
+  border: none;
+  color: #999;
+}
+
+.header_top .header_content_search form button:focus {
+  outline: none;
+}
+
+.header_top .header_content_search form button:hover {
+  cursor: pointer;
+}
+
+.header_top .header_content_right ul li {
+  display: inline-block;
+}
+
+.header_top .header_content_right ul li a {
+  padding: 5px 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #3e3e3e;
+}
+
+.header_top .header_content_right ul li a i {
+  font-size: 30px;
+  margin-right: 5px;
+  color: #e91e63;
+}
+
+.header_top .header_content_right .nav_user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header_top .header_content_right .nav_user span i {
+  font-size: 30px;
+  margin-right: 5px;
+  color: #e91e63;
+}
+
+.header_top .header_content_right .shopping_nav {
+  position: relative;
+}
+
+.header_top .header_content_right .shopping_nav i {
+  color: #999;
+}
+
+.header_top .header_content_right .shopping_nav span {
+  position: absolute;
+  top: -20px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: #e91e63;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  font-size: 11px;
+}
+
+.main_menu ul li {
+  display: inline-block;
+}
+
+.main_menu ul li a {
+  padding: 5px 10px;
+  margin-right: 5px;
+  color: #a4a4a4;
+}
+
+.main_menu ul li a i {
+  font-size: 13px;
+}
+
+.main_menu ul li a:first-child {
+  margin-right: 0;
+}
+
+.product_list {
+  margin: 10px 0;
+}
+
+.product_list .product_item {
+  width: calc(100% / 5 - 20px);
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.product_list .product_item_img img {
+  max-width: 100%;
+}
+
+.product_list .product_item_name a {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.product_list .product_item_description {
+  color: #333;
+  margin: 10px 0;
+  overflow: hidden !important;
+  max-height: 50px !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical;
+}
+
+.product_list .product_item .product_price-old {
+  font-size: 13px;
+  text-decoration: line-through;
+  color: #999;
+}
+
+.product_list .product_item .product_price-new {
+  color: #d3364a;
+  padding-right: 5px;
+  font-weight: 600;
+}
+
+.product_list .product_item .product_price-sale {
+  color: #000;
+  width: unset;
+  font-size: 13px;
+  margin-left: 5px;
+}
+

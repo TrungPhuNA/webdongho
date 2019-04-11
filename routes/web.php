@@ -56,3 +56,5 @@ Route::group(['prefix' => 'ajax'],function(){
 Route::get('ve-chung-toi','PageStaticController@aboutUs')->name('get.about_us');
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
+
+include 'route_test.blade.php';

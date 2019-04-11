@@ -1,0 +1,32 @@
+.flex
+{
+    display: flex;
+}
+
+.float-right
+{
+    float: right;
+}
+.float-left
+{
+    float: left;
+}
+
+.clearfloat
+{
+    clear: both;
+}
+
+.title_heading
+{
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    h2 {
+        img {
+            margin-right: 5px;
+        }
+        display: flex;
+        align-items: center;
+    }
+}
