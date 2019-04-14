@@ -57,4 +57,11 @@ Route::get('ve-chung-toi','PageStaticController@aboutUs')->name('get.about_us');
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
 
+Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
+	Route::get('/','UserController@index')->name('user.dashboard');
+	
+	Route::get('/info','UserController@updateInfo')->name('user.update.info');
+	Route::post('/info','UserController@saveUpdateInfo');
+});
+
 include 'route_test.blade.php';

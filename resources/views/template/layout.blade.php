@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Demo Giao diện</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">  
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=vietnamese" rel="stylesheet">
 </head>
@@ -21,7 +22,7 @@
                 <div class="clearfloat"></div>
             </div>
             <div class="header_content width-100 flex">
-                <div class="width-20">
+                <div class="width-20 header_content_left">
                     <a href="" class="header_content_logo">
                         <img src="https://image.yes24.vn/upload/image/ci.png" alt="">
                     </a>
@@ -56,7 +57,7 @@
     </div>
 </section>
 
-<section style="border-bottom: 1px solid #dedede;background-color: white">
+<section id="scrollMenu" style="border-bottom: 1px solid #dedede;background-color: white">
     <div class="tp_container" style="margin-top: 0">
         <nav class="main_menu">
             <ul class="float-left">
@@ -72,14 +73,41 @@
 </section>
 @yield('slide')
 @yield('content')
-{{--<section class="event">--}}
-{{--<div class="tp_container">--}}
-{{--<div class="width-50">--}}
-{{--<a href=""></a>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</section>--}}
 <section class="footer tp_container_fluid">
+    <div class="box_footer">
+        <div class="width-100 footer_top flex">
+            <div class="width-25 footer_top_item">
+                <h5>Chăm sóc khách hàng</h5>
+                <ul>
+                    <li><a href="">Trung tâm trợ giúp</a></li>
+                    <li><a href="">Hướng dẫn mua hàng</a></li>
+                    <li><a href="">Chinh sách bảo hành</a></li>
+                    <li><a href="">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+            <div class="width-25 footer_top_item">
+                <h5>Về chúng tôi</h5>
+                <ul>
+                    <li><a href="">Giới thiệu Cty</a></li>
+                    <li><a href="">Tuyển dụng</a></li>
+                    <li><a href="">Điều khoản sử dụng</a></li>
+                    <li><a href=""></a></li>
+                </ul>
+            </div>
+            <div class="width-25 footer_top_item">
+                <h5>Thanh toán</h5>
+                <p><span></span><span></span></p>
+            </div>
+            <div class="width-25 footer_top_item">
+                <h5>Đăng ký nhận tin khuyến mãi</h5>
+                <form action="" class="flex">
+                    <input type="text" placeholder="Email ...">
+                    <button type="submit">Nam</button>
+                    <button type="submit">Nữ</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="footer_nav">
         <ul class="">
             <li><a href="">Giới thiệu</a></li>
@@ -119,6 +147,18 @@
 		x[slideIndex-1].style.display = "block";
 	}
 
-
+	//fix
+	// When the user scrolls the page, execute myFunction
+	window.onscroll = function() {myFunction()};
+	var header = document.getElementById("scrollMenu");
+	var sticky = header.offsetTop;
+	function myFunction() {
+		console.log(sticky);
+		if (window.pageYOffset > sticky) {
+			header.classList.add("fix_menu");
+		} else {
+			header.classList.remove("fix_menu");
+		}
+	}
 
 </script>

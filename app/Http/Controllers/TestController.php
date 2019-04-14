@@ -20,4 +20,14 @@ class TestController extends Controller
 	{
 		return view('template.detail');
 	}
+	
+	public function article()
+	{
+		return view('template.article');
+	}
+	
+	public function loading()
+	{
+		return view('template.loading');
+	}
 }
