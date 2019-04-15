@@ -726,6 +726,21 @@ input:focus {
   background-position: right 5px center;
 }
 
+@media only screen and (max-width: 576px) {
+  .result_rearch {
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+  }
+
+  .result_rearch > div {
+    padding: 10px;
+    width: 100%;
+  }
+}
+
 .slide {
   margin-bottom: 20px;
 }

@@ -21,3 +21,16 @@
         background-position: right 5px center;
     }
 }
+
+@media only screen and (max-width: 576px){
+    .result_rearch
+    {
+        padding: 0;
+        flex-flow: column;
+        >div
+        {
+            padding:10px;
+            width: 100%;
+        }
+    }
+}
