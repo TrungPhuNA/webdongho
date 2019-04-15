@@ -62,6 +62,12 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
 	
 	Route::get('/info','UserController@updateInfo')->name('user.update.info');
 	Route::post('/info','UserController@saveUpdateInfo');
+	
+	Route::get('/password','UserController@updatePassword')->name('user.update.password');
+	Route::post('/password','UserController@saveUpdatePassword');
+	
+	Route::get('/san-pham-quan-tam','UserController@getProductCare')->name('user.list.product_care');
+	Route::get('/san-pham-ban-chay','UserController@getProductPay')->name('user.list.product');
 });
 
 include 'route_test.blade.php';

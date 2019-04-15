@@ -7,6 +7,6 @@
 
 		Route::get('tin-tuc','TestController@article')->name('get.article');
 		Route::get('tin-tuc/chi-tiet','TestController@articleDetail')->name('get.article.detail');
-		Route::get('tin-tuc/loading','TestController@loading');
+		Route::get('don-hang','TestController@transaction');
     });
 ?>

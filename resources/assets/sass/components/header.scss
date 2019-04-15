@@ -120,6 +120,49 @@
     }
 }
 
+
+@media only screen and (max-width: 576px){
+    .header_top
+    {
+        .nav_top
+        {
+            ul {
+                float: none;
+                display: flex;
+                li {
+                    a{
+                        padding-left: 8px;
+                        padding-right: 8px;
+                    }
+                }
+            }
+        }
+
+        .header_content
+        {
+            &_logo
+            {
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            &_right
+            {
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+
+}
+
+@media only screen and (min-width: 992px){
+
+}
+
 @media all  and (max-width: 1024px)
 {
     .header_content

@@ -597,6 +597,28 @@ input:focus {
   font-size: 11px;
 }
 
+@media only screen and (max-width: 576px) {
+  .header_top .nav_top ul {
+    float: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .header_top .nav_top ul li a {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .header_top .header_content_logo img {
+    max-width: 100%;
+  }
+
+  .header_top .header_content_right {
+    display: none;
+  }
+}
+
 @media all and (max-width: 1024px) {
   .header_content {
     -ms-flex-flow: wrap;
@@ -746,6 +768,7 @@ input:focus {
 
 .product_list .product_item_img img {
   max-width: 100%;
+  width: 100%;
 }
 
 .product_list .product_item_name a {
@@ -786,6 +809,65 @@ input:focus {
 
 .product_list .product_item-4 {
   width: calc(100% / 4 - 20px);
+}
+
+@media only screen and (max-width: 576px) {
+  .product_list .product_item {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .product_list .product_item {
+    width: calc(100% / 3 - 10px);
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .product_list .product_item {
+    width: calc(100% / 4 - 10px);
+    margin-left: 10px;
+  }
+}
+
+.dashboard h6 {
+  text-transform: uppercase;
+  margin: 15px 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.dashboard_item {
+  width: calc(100% / 4 - 10px);
+  margin-right: 10px;
+  padding: 20px;
+  text-align: right;
+  color: white;
+  font-size: 20px;
+}
+
+.dashboard_item:last-child {
+  margin-right: 0;
+}
+
+.dashboard_item p:first-child {
+  margin-bottom: 10px;
+}
+
+.transaction_item_mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .transaction_item_mobile {
+    display: block;
+  }
+
+  .transaction_item {
+    display: none;
+  }
 }
 
 .product_info {
@@ -999,14 +1081,8 @@ input:focus {
 }
 
 @media all and (max-width: 576px) {
-  .tp_container {
-    width: auto;
-  }
-}
-
-@media all and (min-width: 576px) {
   .box_footer {
-    width: 540px;
+    display: none;
   }
 }
 
@@ -1019,10 +1095,6 @@ input:focus {
 @media all and (min-width: 992px) and (max-width: 1200px) {
   .box_footer {
     width: 960px;
-  }
-
-  body {
-    border: 1px solid #dedede;
   }
 }
 

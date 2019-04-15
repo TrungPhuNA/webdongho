@@ -10,6 +10,7 @@
         {
             img {
                 max-width: 100%;
+                width: 100%;
             }
         }
 
@@ -56,5 +57,39 @@
 
     .product_item-4 {
         width: calc(100% / 4 - 20px);
+    }
+}
+
+
+@media only screen and (max-width: 576px){
+    .product_list
+    {
+        .product_item
+        {
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .product_list
+    {
+        .product_item
+        {
+            width: calc(100% / 3 - 10px);
+            margin-left: 10px;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px){
+    .product_list
+    {
+        .product_item
+        {
+            width: calc(100% / 4 - 10px);
+            margin-left: 10px;
+        }
     }
 }

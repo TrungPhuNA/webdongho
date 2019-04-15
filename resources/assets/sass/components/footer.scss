@@ -88,9 +88,9 @@
 }
 
 @media all  and (max-width: 576px){
-    .tp_container
+    .box_footer
     {
-        width: auto;
+        display: none;
     }
 }
 
@@ -98,7 +98,7 @@
 @media all  and (min-width: 576px){
     .box_footer
     {
-        width: 540px;
+        //width: 540px;
     }
 }
 
@@ -114,9 +114,6 @@
     .box_footer
     {
         width: 960px;
-    }
-    body {
-        border: 1px solid #dedede;
     }
 }
 

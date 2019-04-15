@@ -67,7 +67,17 @@
                         
                     </div>
                     @for($i = 1 ; $i <= 10 ; $i ++)
-                        <div class="article_item width-100 flex" style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px;padding-bottom: 10px;">
+                        <div class="article_item width-100 flex loading-placeholder" style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px;padding-bottom: 10px;">
+                            <div class="article_info width-100">
+                                <h3 class="loading_text" style="font-size: 18px;font-weight: 500;margin-top: 10px;height: 50px"></h3>
+                                @for ($j = 1 ; $j<= 3 ; $j ++)
+                                <div class="loading_text" style="margin: 5px 0 5px 0;height: 10px"></div>
+                                @endfor
+
+                                <div class="loading_text" style="margin: 10px 0 5px 0;height: 10px"></div>
+                            </div>
+                        </div>
+                        <div class="article_item width-100 flex loading" style="border-bottom: 1px solid #f2f2f2;margin-bottom: 10px;padding-bottom: 10px;">
                             <div class="article_info width-100" >
                                 <h3 style="font-size: 18px;font-weight: 500;margin-top: 10px">
                                     <a href="" style="color: #000">Tính năng mời bạn bè cùng xem video của Facebook</a>

@@ -30,4 +30,9 @@ class TestController extends Controller
 	{
 		return view('template.loading');
 	}
+	
+	public function transaction()
+	{
+		return view('template.transaction');
+	}
 }

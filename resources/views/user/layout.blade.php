@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/dashboard/">
     <title> User </title>
     <!-- Bootstrap core CSS -->
@@ -46,6 +47,9 @@
                     <a href="{{ route('user.dashboard') }}">Trang Tổng Quan</a>
                 </li>
                 <li class="{{ \Request::route()->getName() == 'user.update.info' ? 'active' : '' }}"><a href="{{ route('user.update.info') }}">Cập nhật thông tin</a></li>
+                <li class="{{ \Request::route()->getName() == 'user.update.password' ? 'active' : '' }}"><a href="{{ route('user.update.password') }}">Cập nhật mật khẩu</a></li>
+                <li class="{{ \Request::route()->getName() == 'user.list.product_care' ? 'active' : '' }}"><a href="{{ route('user.list.product_care') }}">Sản phẩm quan tâm</a></li>
+                <li class="{{ \Request::route()->getName() == 'user.list.product' ? 'active' : '' }}"><a href="{{ route('user.list.product') }}">Sản phẩm bán chạy</a></li>
 
             </ul>
         </div>

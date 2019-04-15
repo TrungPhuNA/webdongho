@@ -228,12 +228,11 @@
 				}
 			});
 			
-             let routeRenderProduct  = '{{ route('post.product.view') }}';
+            let routeRenderProduct  = '{{ route('post.product.view') }}';
 			checkRenderProduct = false;
 			$(document).on( 'scroll', function(){
 				if ($(window).scrollTop() > 150 && checkRenderProduct == false ) {
 
-					console.log("LOG");
                     checkRenderProduct = true;
 					let products = localStorage.getItem('products');
 					products = $.parseJSON(products)
