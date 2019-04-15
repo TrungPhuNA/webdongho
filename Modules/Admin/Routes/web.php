@@ -40,6 +40,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
 	});
 	
+	// bai viet
 	Route::group(['prefix' => 'article'], function(){
 		Route::get('/','AdminArticleController@index')->name('admin.get.list.article');
 		Route::get('/create','AdminArticleController@create')->name('admin.get.create.article');
@@ -47,6 +48,12 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('/update/{id}','AdminArticleController@edit')->name('admin.get.edit.article');
 		Route::post('/update/{id}','AdminArticleController@update');
 		Route::get('/{action}/{id}','AdminArticleController@action')->name('admin.get.action.article');
+	});
+	
+	//kho hang
+	
+	Route::group(['prefix' => 'warehouse'],function(){
+		Route::get('/','AdminWarehouseController@getWarehouseProduct')->name('admin.get.warehouse.list');
 	});
 	
 	// ql don hang
