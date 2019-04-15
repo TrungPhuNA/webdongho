@@ -71,6 +71,14 @@
         </nav>
     </div>
 </section>
+<section  style="border-bottom: 1px solid #dedede;background-color: white">
+    <div class="tp_container" style="margin-top: 0">
+        <nav class="nav_menu_mobile flex">
+            <a href="javascript:;void(0)" rel="nofollow" class="box_nav_mb"><i class="fas fa-list"></i></a>
+            <a href="javascript:;void(0)" rel="nofollow" class="box_nav_info"><i class="fas fa-shopping-cart"></i></a>
+        </nav>
+    </div>
+</section>
 @yield('slide')
 @yield('content')
 <section class="footer tp_container_fluid">
@@ -122,10 +130,31 @@
         <p>Copyright © <a href="">TrungPhuNA</a> 2019</p>
     </div>
 </section>
+<!--sidebar info mobile-->
+<section class="mb_info_user">
+    <a href="javascript::void(0)" class="close_mb_user"><i class="far fa-times-circle"></i></a>
+    <div class="mb_info_header flex">
+        <div class="mn_user_image width-30">
+            <img src="{{ asset('images/user_default.png') }}" alt="">
+        </div>
+        <div class="mn_user_name width-70">
+            <a href="">Xin chào <span>Phan Trung Phú</span></a>
+            <br><a href=""><i class="fas fa-pencil-alt"></i> Chỉnh sửa thông tin</a>
+        </div>
+    </div>
+    <div class="mb_info_content">
+        <ul>
+            <li><a href=""><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href=""><i class="fas fa-database"></i> Quản lý đơn hàng</a></li>
+            <li><a href=""><i class="fas fa-heart"></i> Sản phẩm yêu thích</a></li>
+            <li><a href=""><i class="fas fa-cogs"></i> Thay đổi mật khẩu</a></li>
+        </ul>
+        <a href="" class="sign-out-alt"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+    </div>
+</section>
 
 </body>
-</html>
-
+<script src="{{ asset('js/jquery_off.js') }}" crossorigin="anonymous"></script>
 <script>
 
 	//slide
@@ -139,12 +168,15 @@
 	function showDivs(n) {
 		var i;
 		var x = document.getElementsByClassName("mySlides");
-		if (n > x.length) {slideIndex = 1}
-		if (n < 1) {slideIndex = x.length}
-		for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";
-		}
-		x[slideIndex-1].style.display = "block";
+		if (x.length)
+        {
+			if (n > x.length) {slideIndex = 1}
+			if (n < 1) {slideIndex = x.length}
+			for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";
+			}
+			x[slideIndex-1].style.display = "block";
+        }
 	}
 
 	//fix
@@ -161,4 +193,48 @@
 		}
 	}
 
+	$(function () {
+
+		// show sidebar-left
+		$(".box_nav_mb").click(function(){
+			let productCategories = $(".product_categories_left");
+			 if ($(".product_categories_left").hasClass('active_mb'))
+             {
+				 productCategories.css('left','-300px');
+				 productCategories.removeClass('active_mb')
+             }else
+             {
+				 productCategories.css('left','0');
+				 productCategories.addClass('active_mb')
+             }
+		});
+
+		$(".close_sidebar_mb").click(function(event){
+			event.preventDefault();
+			$(".box_nav_mb").trigger('click')
+        })
+
+        //
+        $(".box_nav_info").click(function(event){
+        	event.preventDefault();
+        	let mb_info_header = $(".mb_info_user");
+
+			if (mb_info_header.hasClass('active_mb'))
+			{
+				mb_info_header.css('right','-300px');
+				mb_info_header.removeClass('active_mb')
+			}else
+			{
+				mb_info_header.css('right','0');
+				mb_info_header.addClass('active_mb')
+			}
+        })
+
+        $(".close_mb_user").click(function(event){
+			event.preventDefault();
+
+			$(".box_nav_info").trigger('click')
+        });
+	})
 </script>
+</html>

@@ -1,7 +1,7 @@
 @extends('template.layout')
 @section('content')
     <section>
-        <div class="tp_container">
+        <div class="tp_container product_detail">
             <div class="width-100 flex" style="flex-flow: wrap">
                 <div class="breadcrumb">
                     <ul itemscope="" itemtype="http://schema.org/BreadcrumbList">
@@ -26,13 +26,13 @@
                     <div class="clearfloat"></div>
                 </div>
             </div>
-            <div class="width-100 flex">
-                <div class="width-35" style="margin-right: 20px">
+            <div class="width-100 flex product_detail-column">
+                <div class="width-35 product_detail_left" style="margin-right: 20px">
                     <a href="">
                         <img src="{{ asset('images/detail.jpg') }}" style="max-width: 100%" alt="">
                     </a>
                 </div>
-                <div class="width-65">
+                <div class="width-65 product_detail_right" >
                     <div class="title_heading">
                         <h1>Bộ vest truyền thống đen May's House 410208232800</h1>
                     </div>
@@ -41,8 +41,8 @@
                             <p class="flex"><span class="width-15">Mã sản phẩm </span><a href="">#1</a></p>
                             <p class="flex"><span class="width-15">Hãng </span><a href="">Cty ABC</a></p>
                         </div>
-                        <div class="width-100 flex">
-                            <div class="width-70">
+                        <div class="width-100 flex product_detail-column">
+                            <div class="width-70 width-mb-100">
                                 <div class="product_info_description">
                                     - Chất liệu cao cấp, đường may sắc nét tinh tế.<br>-
                                     Thiết kế thời trang trẻ trung, xử lý form dáng chuẩn.<br>-
@@ -56,7 +56,7 @@
                                     <a href=""><i class="fas fa-heart"></i> Yêu thích</a>
                                 </div>
                             </div>
-                            <div class="width-30">
+                            <div class="width-30 width-mb-100">
                                 <div class="info_pay">
                                     <h6 class="title_suggest">Thông tin giao hàng</h6>
                                     <p>HCM: 2 - 4 ngày</p>
@@ -72,8 +72,8 @@
                 </div>
             </div>
 
-            <div class="width-100 flex" style="margin-top: 20px">
-                <div class="width-75">
+            <div class="width-100 flex product_detail-column" style="margin-top: 20px">
+                <div class="width-75 width-mb-100">
                     <div class="title_heading">
                         <h3>Thông tin chi tiết sản phẩm</h3>
                     </div>
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="width-25">
+                <div class="width-25 width-mb-100">
                     <div class="title_heading">
                         <h3>Sản phẩm liên quan</h3>
                     </div>

@@ -1,17 +1,11 @@
 @extends('template.layout')
 @section('content')
     <section>
-        <div class="tp_container"  style="background-color: white;
-    padding: 10px;
-    margin-top: 10px;
-    padding-top: 0;">
+        <div class="tp_container product_categories">
             <div class="width-100 flex" style="flex-flow: wrap">
-                <div class="width-20">
-                    <div class="sidebar_left" style="    background: #eee;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    margin-top: 10px;">
+                <div class="width-20 product_categories_left">
+                    <a href="javascript::void(0)" class="close_sidebar_mb"><i class="far fa-times-circle"></i></a>
+                    <div class="sidebar_left" style="background: #eee;margin-right: 20px;margin-bottom: 20px;padding: 10px;margin-top: 10px;">
                         <div class="sidebar_title">
                             <p>Danh mục</p>
                         </div>
@@ -26,7 +20,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="sidebar_left">
                         <div class="sidebar_title">
                             <p>Tìm theo thương hiệu</p>
@@ -70,9 +63,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="width-80">
+                <div class="width-80 product_categories_right">
                     <div class="breadcrumb">
                         <ul itemscope="" itemtype="http://schema.org/BreadcrumbList">
                             <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">

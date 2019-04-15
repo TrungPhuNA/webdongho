@@ -21,6 +21,12 @@ Route::group(['namespace' => 'Auth'],function(){
 	Route::post('dang-nhap','LoginController@postLogin')->name('post.login');
 	
 	Route::get('dang-xuat','LoginController@getLogout')->name('get.logout.user');
+	
+	Route::get('/lay-lai-mat-khau','ForgotPasswordController@getFormResetPassword')->name('get.reset.password');
+	Route::post('/lay-lai-mat-khau','ForgotPasswordController@sendCodeResetPassword');
+	
+	Route::get('/password/reset','ForgotPasswordController@resetPassword')->name('get.link.reset.password');
+	Route::post('/password/reset','ForgotPasswordController@saveResetPassword');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
