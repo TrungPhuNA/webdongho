@@ -92,6 +92,9 @@
     </style>
 </head>
 <body class="home-one">
+@if(get_data_user('web','active') == 1)
+    <p>Tài khoản của bạn chưa được kích hoạt. Hãy check địa chỉ email của bạn để kích hoạt tài khoản</p>
+@endif
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">TrungPhuNA</a> to improve your experience.</p>
 <![endif]-->
@@ -123,17 +126,17 @@
 
 @yield('content')
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-		var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-		s1.async=true;
-		s1.src='https://embed.tawk.to/5caf8a36c1fe2560f3fe6920/default';
-		s1.charset='UTF-8';
-		s1.setAttribute('crossorigin','*');
-		s0.parentNode.insertBefore(s1,s0);
-	})();
-</script>
+{{--<script type="text/javascript">--}}
+	{{--var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();--}}
+	{{--(function(){--}}
+		{{--var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];--}}
+		{{--s1.async=true;--}}
+		{{--s1.src='https://embed.tawk.to/5caf8a36c1fe2560f3fe6920/default';--}}
+		{{--s1.charset='UTF-8';--}}
+		{{--s1.setAttribute('crossorigin','*');--}}
+		{{--s0.parentNode.insertBefore(s1,s0);--}}
+	{{--})();--}}
+{{--</script>--}}
 <!--End of Tawk.to Script-->
 <!-- FOOTER START -->
 @include('components.footer')
