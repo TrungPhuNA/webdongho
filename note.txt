@@ -1,3 +1,2 @@
-- XL cac bạn nay mình ko nói đc nên đành quay video  ko có tiếng
-- Hôm nay mình sẽ show ra danh mục sản phẩm
-- OK roi day  the la da show ra dc danh muc san pham 
+-  API GOOGLE sheets
+    + https://developers.google.com/sheets/api/quickstart/php

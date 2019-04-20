@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::post('/create','AdminArticleController@store');
 		Route::get('/update/{id}','AdminArticleController@edit')->name('admin.get.edit.article');
 		Route::post('/update/{id}','AdminArticleController@update');
+		
 		Route::get('/{action}/{id}','AdminArticleController@action')->name('admin.get.action.article');
 	});
 	

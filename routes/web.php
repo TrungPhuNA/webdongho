@@ -61,6 +61,10 @@ Route::group(['prefix' => 'ajax'],function(){
 	Route::post('/view-product','HomeController@renderProductView')->name('post.product.view');
 });
 
+Route::group(['prefix' => 'api-sheets'],function(){
+	Route::get('/sheets','ApiGoogleSheetController@index');
+});
+
 
 Route::get('ve-chung-toi','PageStaticController@aboutUs')->name('get.about_us');
 Route::get('lien-he','ContactController@getContact')->name('get.contact');

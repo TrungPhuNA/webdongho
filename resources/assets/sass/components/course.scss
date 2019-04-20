@@ -1,0 +1,26 @@
+.course_list
+{
+    .course_item {
+        width: calc(100% / 4 - 20px);
+        margin-left: 20px;
+        margin-bottom: 20px;
+        a{
+            img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    }
+
+    .course_info
+    {
+        &_auth
+        {
+            font-size: 13px;
+            a,p {
+                color: #333;
+
+            }
+        }
+    }
+}

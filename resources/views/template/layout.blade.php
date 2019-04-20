@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=vietnamese" rel="stylesheet">
 </head>
 <body>
-
+<section style="border-bottom: 1px solid #dedede">
+    
+</section>
 <section style="background-color: white">
     <div class="tp_container" id="header_top" style="margin-top: 0">
         <header class="header_top">
@@ -44,7 +46,7 @@
                         <li class="">
                             <div class="nav_user">
                                 <span><i class="fas fa-user-plus"></i></span>
-                                <p><a href="">Đăng ký</a> <br><a href="">Đăng nhập</a></p>
+                                <p><a href="" class="md_show">Đăng ký</a> <br><a href="">Đăng nhập</a></p>
                             </div>
                         </li>
                         <li>
@@ -63,6 +65,7 @@
             <ul class="float-left">
                 <li><a href=""><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href=""><i class="fas fa-database"></i> Sản phẩm</a></li>
+                <li><a href="{{ route('get.course') }}"><i class="fas fa-book"></i> Khoá học </a></li>
                 <li><a href=""><i class="fas fa-pen"></i> Tin tức</a></li>
                 <li><a href=""><i class="fas fa-address-card"></i> Giới thiệu</a></li>
                 <li><a href=""><i class="fas fa-file-signature"></i> Liên hệ</a></li>
@@ -71,8 +74,8 @@
         </nav>
     </div>
 </section>
-<section  style="border-bottom: 1px solid #dedede;background-color: white">
-    <div class="tp_container" style="margin-top: 0">
+<section class="box_nav_mobile">
+    <div class="tp_container">
         <nav class="nav_menu_mobile flex">
             <a href="javascript:;void(0)" rel="nofollow" class="box_nav_mb"><i class="fas fa-list"></i></a>
             <a href="javascript:;void(0)" rel="nofollow" class="box_nav_info"><i class="fas fa-shopping-cart"></i></a>
@@ -152,9 +155,11 @@
         <a href="" class="sign-out-alt"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
     </div>
 </section>
-
+@include('template.components.modal.demo')
+<div class="opacity"></div>
 </body>
 <script src="{{ asset('js/jquery_off.js') }}" crossorigin="anonymous"></script>
+@yield('script')
 <script>
 
 	//slide
@@ -202,10 +207,12 @@
              {
 				 productCategories.css('left','-300px');
 				 productCategories.removeClass('active_mb')
+				 $(".opacity").hide();
              }else
              {
 				 productCategories.css('left','0');
 				 productCategories.addClass('active_mb')
+				 $(".opacity").show();
              }
 		});
 
@@ -214,7 +221,7 @@
 			$(".box_nav_mb").trigger('click')
         })
 
-        //
+        // user
         $(".box_nav_info").click(function(event){
         	event.preventDefault();
         	let mb_info_header = $(".mb_info_user");
@@ -223,10 +230,12 @@
 			{
 				mb_info_header.css('right','-300px');
 				mb_info_header.removeClass('active_mb')
+				$(".opacity").hide();
 			}else
 			{
 				mb_info_header.css('right','0');
 				mb_info_header.addClass('active_mb')
+				$(".opacity").show();
 			}
         })
 
@@ -234,6 +243,30 @@
 			event.preventDefault();
 
 			$(".box_nav_info").trigger('click')
+        });
+
+		//test show modal
+        $(".md_show").click(function(event){
+			event.preventDefault();
+
+			let $this = $(this);
+			if ($this.hasClass('active_md'))
+            {
+				$(".tp_modal").css('top','-100%')
+                $this.removeClass('active_md')
+				$(".opacity").hide();
+            }else
+            {
+				$this.addClass('active_md')
+				$(".tp_modal").css('top','15%')
+				$(".opacity").show();
+            }
+        })
+
+        //close modal
+        $(".tp_modal_close").click(function(event){
+			event.preventDefault();
+			$(".md_show").trigger('click');
         });
 	})
 </script>

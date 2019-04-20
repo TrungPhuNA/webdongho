@@ -11,11 +11,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/dashboard/">
     <title> User </title>
-    <!-- Bootstrap core CSS -->
+
     <link href="{{ asset('theme_admin/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-{{--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">--}}
-<!-- Custom styles for this template -->
     <link href="{{ asset('theme_admin/css/dashboard.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
@@ -72,9 +69,7 @@
         </div>
     </div>
 </div>
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="{{ asset('theme_admin/js/bootstrap.min.js') }}"></script>
 <script>

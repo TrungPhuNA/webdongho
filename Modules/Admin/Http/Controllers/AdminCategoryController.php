@@ -4,7 +4,6 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Http\Requests\RequestCategory;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 
@@ -49,12 +48,10 @@ class AdminCategoryController extends Controller
 		$code = 1;
 		try{
 			$category                    = new Category();
-			
 			if ($id)
 			{
 				$category                    = Category::find($id);
 			}
-			
 			$category->c_name            = $requestCategory->name;
 			$category->c_slug            = str_slug($requestCategory->name);
 			$category->c_icon            = str_slug($requestCategory->icon);

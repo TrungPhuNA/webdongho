@@ -35,4 +35,14 @@ class TestController extends Controller
 	{
 		return view('template.transaction');
 	}
+	
+	public function course()
+	{
+		return view('template.course.index');
+	}
+	
+	public function courseDetail()
+	{
+		return view('template.course.detail');
+	}
 }
