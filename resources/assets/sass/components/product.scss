@@ -3,7 +3,7 @@
     margin: 10px 0;
     .product_item
     {
-        width: calc(100% / 5 - 20px);
+        width: calc(100% / 5 - 20px) !important;
         margin-left: 20px;
         margin-bottom: 20px;
         &_img

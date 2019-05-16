@@ -27,7 +27,7 @@
                                     <a href="">By Admin</a>
                                     <p>Nhân viên</p>
                                 </div>
-                                <div class="width-30" style="text-align: right">
+                                <div class="width-30 course_info_auth-40" style="text-align: right">
                                     <a href="{{ route('get.course.detail') }}" style="padding: 5px 10px;border: 1px solid #e91d63;display: inline-block;color: #e91d63;border-radius: 5px;">Xem ngay</a>
                                 </div>
                             </div>

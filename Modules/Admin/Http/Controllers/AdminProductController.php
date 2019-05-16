@@ -92,6 +92,12 @@ class AdminProductController extends Controller
 		$product->save();
 	}
 	
+	public function delete($id)
+	{
+		\DB::table('products')->where('id',$id)->delete();
+		return redirect()->back();
+	}
+	
 	public function action($action,$id)
 	{
 		if ($action)

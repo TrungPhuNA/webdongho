@@ -57,7 +57,7 @@
                              </td>
                              <td>
                                  <a class="btn_customer_action" href="{{ route('admin.get.edit.article',$article->id) }}"><i class="fas fa-pen" ></i> Cập nhật</a>
-                                 <a class="btn_customer_action" href="{{ route('admin.get.action.article',['delete',$article->id]) }}"><i class="fas fa-trash-alt"></i> Xoá</a>
+                                 <a class="btn_customer_action" href="{{ route('admin.get.delete.article',$article->id) }}"><i class="fas fa-trash-alt"></i> Xoá</a>
                              </td>
                          </tr>
                      @endforeach

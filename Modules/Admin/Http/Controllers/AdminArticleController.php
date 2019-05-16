@@ -100,4 +100,10 @@ class AdminArticleController extends Controller
 		
 		return redirect()->back();
 	}
+	
+	public function delete(Request $request, $id)
+	{
+		Article::find($id)->delete();
+		return redirect()->back()->with('success','Xoá dữ liệu thành công');
+	}
 }

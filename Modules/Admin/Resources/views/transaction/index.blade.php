@@ -1,5 +1,6 @@
 @extends('admin::layouts.master')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
     <div class="page-header">
         <ol class="breadcrumb">
             <li><a href="#">Trang chủ</a></li>
@@ -7,8 +8,30 @@
             <li class="active">Danh sách</li>
         </ol>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-inline" action="" style="margin-bottom: 20px">
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" class="form-control"  placeholder="Tên sản phẩm ..." name="name" value="{{ \Request::get('name') }}">--}}
+                {{--</div>--}}
+                <div class="form-group col-sm-4" style="display: inline-block">
+                    <input style="width: 100%" type="text" id="dates" name="dates" value="{{ Request::query('dates') }}" class="form-control" autocomplete="off" placeholder="vd : 10/29/2018 - 10/29/2018">
+                </div>
+
+                <div class="form-group">
+                    <select name="status" id="" class="form-control">
+                        <option value="">__Trạng thái đơn hàng__ </option>
+                        <option value="2" {{ Request::get('status') == 2 ? "selected='seletedd'" : '' }}>Chờ xử lý</option>
+                        <option value="1" {{ Request::get('status') == 1 ? "selected='seletedd'" : '' }}>Đã xử lý</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
     <div class="table-responsive">
         <h2>Quản lý đơn hàng</h2>
+        <p> Tổn tiền : <b>{{ number_format($transactionsTotal,0,',','.') }}</b> VNĐ</p>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -41,7 +64,7 @@
                              {{ $transaction->created_at->format('d-m-Y') }}
                          </td>
                          <td>
-                             <a class="btn_customer_action" href=""><i class="fas fa-trash-alt"></i> Xoá</a>
+                             <a class="btn_customer_action" href="{{ route('admin.get.delete.order',$transaction->id) }}"><i class="fas fa-trash-alt"></i> Xoá</a>
                              <a class="btn_customer_action js_order_item" data-id="{{ $transaction->id }}" href="{{ route('admin.get.view.order',$transaction->id) }}"><i class="fas fa-eye"></i> </a>
                          </td>
                      </tr>
@@ -71,6 +94,8 @@
     </div>
 @stop
 @section('script')
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
     <script>
         $(function(){
         	$(".js_order_item").click(function(event){
@@ -92,5 +117,23 @@
 				});
             });
         })
+		$(function () {
+
+			$('input[name="dates"]').daterangepicker({
+				autoUpdateInput: false,
+				locale: {
+					cancelLabel: 'Clear'
+				}
+			});
+
+			$('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+				$(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			});
+
+			$('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
+				$(this).val('');
+			});
+
+		})
     </script>
 @stop

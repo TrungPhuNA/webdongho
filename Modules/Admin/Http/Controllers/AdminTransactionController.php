@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AdminTransactionController extends Controller
 {
@@ -15,13 +16,33 @@ class AdminTransactionController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-    	$transactions = Transaction::with('user:id,name')
-			->paginate(10);
+    	$transactions = Transaction::with('user:id,name');
+    	
+    	$transactionsTotal = Transaction::whereRaw(1);
+    	
+    	if ($request->dates)
+		{
+			$date = $this->getStartEndTime($request->dates);
+			$transactionsTotal->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
+			$transactions->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
+		}
+		
+		if ($request->status)
+		{
+			$status = $request->status == 2 ? 0 : 1;
+			$transactionsTotal->where('tr_status',$status);
+			$transactions->where('tr_status',$status);
+		}
+		
+		$transactionsTotal = $transactionsTotal->sum('tr_total');
+    	$transactions = $transactions->orderByDesc('id')->paginate(10);
     	
     	$viewData = [
-    		'transactions' => $transactions
+    		'transactions' => $transactions,
+			'transactionsTotal' => $transactionsTotal,
+			'query' => $request->query()
 		];
     	
         return view('admin::transaction.index',$viewData);
@@ -37,6 +58,12 @@ class AdminTransactionController extends Controller
 		 	$html = view('admin::components.order',compact('orders'))->render();
 		 	return \response()->json($html);
 		 }
+	}
+	
+	public function delete($id)
+	{
+		\DB::table('transactions')->where('id',$id)->delete();
+		return redirect()->back();
 	}
 	
 	/**
@@ -68,5 +95,24 @@ class AdminTransactionController extends Controller
 		$transaction->save();
 		
 		return redirect()->back()->with('success','Xử lý đơn hàng thành công');
+	}
+	
+	public function getStartEndTime($date_range, $config=[])
+	{
+		$dates = explode(' - ', $date_range);
+		
+		if (array_get($config, 'his'))
+		{
+			$start_date = date('Y-m-d H:i:s', strtotime($dates[0]));
+			$end_date = date('Y-m-d H:i:s', strtotime($dates[1]));
+		}else
+		{
+			$start_date = date('Y-m-d 00:00:00', strtotime($dates[0]));
+			$end_date = date('Y-m-d 23:59:59', strtotime($dates[1]));
+		}
+		return [
+			'start' => $start_date,
+			'end' => $end_date
+		];
 	}
 }

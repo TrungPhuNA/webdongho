@@ -33,12 +33,15 @@
                              </td>
                              <td>
                                  <a class="btn_customer_action" href="{{ route('admin.get.edit.product',$user->id) }}"><i class="fas fa-pen" ></i> Cập nhật</a>
-                                 <a class="btn_customer_action" href="{{ route('admin.get.action.product',['delete',$user->id]) }}"><i class="fas fa-trash-alt"></i> Xoá</a>
+{{--                                 <a class="btn_customer_action" href="{{ route('admin.get.action.product',['delete',$user->id]) }}"><i class="fas fa-trash-alt"></i> Xoá</a>--}}
                              </td>
                          </tr>
                      @endforeach
                  @endif
             </tbody>
         </table>
+        <div class="row">
+            {!! $users->links() !!}
+        </div>
     </div>
 @stop

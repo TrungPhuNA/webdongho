@@ -37,6 +37,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::post('/create','AdminProductController@store');
 		Route::get('/update/{id}','AdminProductController@edit')->name('admin.get.edit.product');
 		Route::post('/update/{id}','AdminProductController@update');
+		Route::get('delete/{id}','AdminProductController@delete')->name('admin.get.delete.product');
 		Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
 	});
 	
@@ -47,6 +48,8 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::post('/create','AdminArticleController@store');
 		Route::get('/update/{id}','AdminArticleController@edit')->name('admin.get.edit.article');
 		Route::post('/update/{id}','AdminArticleController@update');
+		Route::get('/delete/{id}','AdminArticleController@delete')->name('admin.get.delete.article');
+		
 		
 		Route::get('/{action}/{id}','AdminArticleController@action')->name('admin.get.action.article');
 	});
@@ -61,6 +64,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 	Route::group(['prefix' => 'transaction'], function(){
 		Route::get('/','AdminTransactionController@index')->name('admin.get.list.transaction');
 		Route::get('/view/{id}','AdminTransactionController@viewOrder')->name('admin.get.view.order');
+		Route::get('/delete/{id}','AdminTransactionController@delete')->name('admin.get.delete.order');
 		Route::get('/active/{id}','AdminTransactionController@actionTransaction')->name('admin.get.active.transaction');
 	});
 	

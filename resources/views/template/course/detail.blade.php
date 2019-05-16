@@ -14,7 +14,7 @@
                 <div class="title_heading">
                     <h2><img src="{{ asset('images/new.png') }}" style="width: 40px;height: 40px" alt="">Chi tiết khoá học</h2>
                 </div>
-                <div class="width-100 flex">
+                <div class="width-100 flex flex-direction-column">
                     <div class="width-70">
                         <div class="video"></div>
                         <div class="course_detail_list">
@@ -45,7 +45,7 @@
                                                 <i class="far fa-file-video" style="color: #e0e0e0;font-size: 14px;margin-right: 5px;"></i><span>{{ $arrayDetail[rand(0,4)] }}</span>
                                             </a>
                                             <div class="course_item_video">
-                                                <iframe width="560" height="315" src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/9YffrCViTVk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
                                             </div>
                                         </li>
                                     @endfor
