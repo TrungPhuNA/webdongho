@@ -14,7 +14,6 @@
                 <tr>
                     <th>#</th>
                     <th>Tên danh mục</th>
-                    <th>Title Seo</th>
                     <th>Trang chủ</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
@@ -26,7 +25,6 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->c_name }}</td>
-                            <td>{{ $category->c_title_seo }}</td>
                             <td>
                                 <a href="{{ route('admin.get.action.category',['home',$category->id]) }}">{{ $category->getHome($category->c_home)['name'] }}</a>
                             </td>

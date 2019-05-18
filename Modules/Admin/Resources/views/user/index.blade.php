@@ -16,8 +16,6 @@
                 <th>Tên hiển thị </th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Hình ảnh</th>
-                <th>Thao tác</th>
             </tr>
             </thead>
             <tbody>
@@ -28,13 +26,6 @@
                              <td>{{ $user->name }}</td>
                              <td>{{ $user->email }}</td>
                              <td>{{ $user->phone }}</td>
-                             <td>
-                                 <img src="{{ pare_url_file($user->avatar) }}" alt="" class="img img-responsive" style="width: 80px;height: 80px;">
-                             </td>
-                             <td>
-                                 <a class="btn_customer_action" href="{{ route('admin.get.edit.product',$user->id) }}"><i class="fas fa-pen" ></i> Cập nhật</a>
-{{--                                 <a class="btn_customer_action" href="{{ route('admin.get.action.product',['delete',$user->id]) }}"><i class="fas fa-trash-alt"></i> Xoá</a>--}}
-                             </td>
                          </tr>
                      @endforeach
                  @endif

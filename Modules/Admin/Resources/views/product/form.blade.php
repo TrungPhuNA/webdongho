@@ -30,15 +30,6 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group">
-                <label for="name">Meta Title:</label>
-                <input type="text" class="form-control" placeholder="Meta Title " value="{{ old('pro_title_seo',isset($product->pro_title_seo) ? $product->pro_title_seo : '') }}" name="pro_title_seo">
-            </div>
-            <div class="form-group">
-                <label for="name">Meta Description:</label>
-                <input type="text" class="form-control" placeholder="Meta Description " value="{{ old('pro_description_seo',isset($product->pro_description_seo) ? $product->pro_description_seo : '') }}" name="pro_description_seo">
-            </div>
-
         </div>
         <div class="col-sm-4">
             <div class="form-group">

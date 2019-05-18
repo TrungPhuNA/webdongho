@@ -9,7 +9,7 @@
                             <h4>Thông tin công ty</h4>
                         </div>
                         <div class="cakewalk-footer-content">
-                            <p class="footer-des">Vị thế của bóng đá Anh đang trở lại mạnh mẽ. Sau 48 năm, có tới 6 đội xuất sắc ghi danh vào tứ kết các cúp châu Âu. Và cũng là lần đầu tiên kể từ năm 2009, 4 đội bóng Anh cùng lúc góp mặt ở tứ kết Champions League gồm MU, Man City, Tottenham và Liverpool.</p>
+                            <p class="footer-des">Sửa mô tả</p>
                             <a href="#" class="read-more">Xem thêm ...</a>
                         </div>
                     </div>
@@ -22,9 +22,9 @@
                         <div class="cakewalk-footer-content">
                             <ul>
                                 <li><a href="{{ route('get.about_us') }}" target="_blank">Về chúng tôi</a></li>
-                                <li><a href="#">Thông tin giao hàng</a></li>
-                                <li><a href="#">Chính sách bảo mật</a></li>
-                                <li><a href="#">Điều khoản sử dụng</a></li>
+                                <li><a href="{{ route('get.giaohang') }}">Thông tin giao hàng</a></li>
+                                <li><a href="{{ route('get.baomat') }}">Chính sách bảo mật</a></li>
+                                <li><a href="{{ route('get.dieukhoansudung') }}">Điều khoản sử dụng</a></li>
                             </ul>
                         </div>
                     </div>
@@ -36,10 +36,8 @@
                         </div>
                         <div class="cakewalk-footer-content">
                             <ul>
-                                <li><a href="#">Tổng quan</a></li>
-                                <li><a href="#">Đăng nhập</a></li>
-                                <li><a href="#">Giỏ hàng</a></li>
-                                <li><a href="#">Sản phẩm yêu thích</a></li>
+                                <li><a href="{{ route('user.dashboard') }}" title="Quản lý tổng quan">Quản lý</a></li>
+                                <li><a href="{{ route('get.list.shopping.cart') }}">Giỏ hàng</a></li>
                             </ul>
                         </div>
                     </div>
@@ -51,8 +49,7 @@
                         </div>
                         <div class="cakewalk-footer-content">
                             <ul>
-                                <li><a href="#">Affiliates</a></li>
-                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="{{ route('get.contact') }}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>

@@ -49,15 +49,9 @@
                                         <div class="actions">
                                             <div class="action-buttons">
                                                 <div class="add-to-links">
-                                                    <div class="add-to-wishlist">
-                                                        <a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                    </div>
                                                     <div class="compare-button">
                                                         <a href="{{ route('add.shopping.cart',$proHot->id) }}" title="Add to Cart"><i class="icon-bag"></i></a>
                                                     </div>
-                                                </div>
-                                                <div class="quickviewbtn">
-                                                    <a href="{{ route('get.detail.product',[$proHot->pro_slug,$proHot->id]) }}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
                                                 </div>
                                             </div>
                                         </div>

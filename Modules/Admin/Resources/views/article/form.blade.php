@@ -30,15 +30,7 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group">
-                <label for="name">Meta Title:</label>
-                <input type="text" class="form-control" placeholder="Meta Title " value="{{ old('a_title_seo',isset($article->a_title_seo) ? $article->a_title_seo : '') }}" name="a_title_seo">
-            </div>
-            <div class="form-group">
-                <label for="name">Meta Description:</label>
-                <input type="text" class="form-control" placeholder="Meta Description " value="{{ old('a_description_seo',isset($article->a_description_seo) ? $article->a_description_seo : '') }}" name="a_description_seo">
-            </div>
-
+            
             <div class="form-group">
                 <label for="name">Avatar:</label>
                 <input type="file" name="avatar" class="form-control">

@@ -32,7 +32,7 @@ class AdminArticleController extends Controller
 	public function store(RequestArticle $requestArticle)
 	{
 		 $this->insertOrUpdate($requestArticle);
-		 return redirect()->back();
+		 return redirect()->back()->with('success','Thêm mới thành công');;
 	}
 	
 	public function edit($id)
@@ -44,7 +44,7 @@ class AdminArticleController extends Controller
 	public function update(RequestArticle $requestArticle,$id)
 	{
 		$this->insertOrUpdate($requestArticle,$id);
-		return redirect()->back();
+		return redirect()->back()->with('success','Cập nhật thành công');
 	}
 	
 	public function insertOrUpdate($requestArticle, $id = '')

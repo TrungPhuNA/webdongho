@@ -27,6 +27,7 @@ class HomeController extends FrontendController
 		
 		$categoriesHome = Category::with('products')
 				->where('c_home',Category::HOME)
+				->where('c_active',Category::STATUS_PUBLIC)
 				->limit(3)
 				->get();
 		

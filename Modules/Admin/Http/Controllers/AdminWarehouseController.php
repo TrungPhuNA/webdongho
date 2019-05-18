@@ -13,13 +13,14 @@ class AdminWarehouseController extends Controller
     public function getWarehouseProduct(Request $request)
 	{
 		$products = Product::with('category:id,c_name');
-		$column = 'id';
+		
 		if ($request->type && $request->type == 'pay')
 		{
 			$column = 'pro_pay';
 			$products->where('pro_pay','>',0);
 		}else
 		{
+			$column = 'pro_number';
 			$products->where('pro_number','<=',5);
 		}
 		

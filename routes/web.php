@@ -12,7 +12,9 @@
 */
 
 Auth::routes();
-
+Route::get('thong-tin-giao-hang','PageStaticController@giaohang')->name('get.giaohang');
+Route::get('bao-mat','PageStaticController@baomat')->name('get.baomat');
+Route::get('dieu-khoan-su-dung','PageStaticController@dieukhoansudung')->name('get.dieukhoansudung');
 Route::group(['namespace' => 'Auth'],function(){
 	Route::get('dang-ky','RegisterController@getRegister')->name('get.register');
 	Route::post('dang-ky','RegisterController@postRegister')->name('post.register');
