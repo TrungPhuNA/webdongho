@@ -30,20 +30,19 @@
                                         <div class="actions">
                                             <div class="action-buttons">
                                                 <div class="add-to-links">
-                                                    <div class="add-to-wishlist">
-                                                        <a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                    </div>
                                                     <div class="compare-button">
                                                         <a href="{{ route('add.shopping.cart',$product->id) }}" title="Add to Cart"><i class="icon-bag"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="quickviewbtn">
-                                                    <a href="{{ route('get.detail.product',[$product->pro_slug,$product->id]) }}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="price-box">
-                                            <span class="new-price">{{ number_format($product->pro_price,0,',','.') }} đ</span>
+                                            @if ($product->pro_sale)
+                                                <span class="new-price" style="text-decoration: line-through;color: #666;font-weight: 500;">{{ number_format($product->pro_price,0,',','.') }} đ</span>
+                                                <span class="new-price">{{ number_format(round((100 - $product->pro_sale) * $product->pro_price / 100,0),0,',','.') }} đ</span>
+                                            @else
+                                                <span class="new-price">{{ number_format($product->pro_price,0,',','.') }} đ</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="product-content">

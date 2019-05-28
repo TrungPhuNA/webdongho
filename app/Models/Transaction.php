@@ -12,6 +12,8 @@ class Transaction extends Model
 	
 	const STATUS_DONE = 1;
 	const STATUS_DEFAULT = 0;
+	const TYPE_CART = 1;
+	const TYPE_PAY  = 2;
 	
 	public function user()
 	{

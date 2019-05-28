@@ -56,7 +56,12 @@
                                             </div>
                                         </div>
                                         <div class="price-box">
-                                            <span class="new-price">{{ number_format($proHot->pro_price,0,',','.') }} đ</span>
+                                            @if ($proHot->pro_sale)
+                                                <span class="new-price" style="text-decoration: line-through;color: #666;font-weight: 500;">{{ number_format($proHot->pro_price,0,',','.') }} đ</span>
+                                                <span class="new-price">{{ number_format(round((100 - $proHot->pro_sale) * $proHot->pro_price / 100,0),0,',','.') }} đ</span>
+                                            @else
+                                                <span class="new-price">{{ number_format($proHot->pro_price,0,',','.') }} đ</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -230,6 +235,7 @@
                     checkRenderProduct = true;
 					let products = localStorage.getItem('products');
 					products = $.parseJSON(products)
+                    console.log(products);
 
                     if (products.length > 0 )
                     {

@@ -109,29 +109,21 @@
                                         @endfor
                                     </div>
                                     <div class="price-boxes">
-                                        <span class="new-price">{{ number_format($productDetail->pro_price,0,',','.') }}đ</span>
+                                        @if ($productDetail->pro_sale)
+                                            <span class="new-price" style="text-decoration: line-through;color: #666;font-weight: 500;">{{ number_format($productDetail->pro_price,0,',','.') }} đ</span>
+                                            <span class="new-price">{{ number_format(round((100 - $productDetail->pro_sale) * $productDetail->pro_price / 100,0),0,',','.') }} đ</span>
+                                        @else
+                                            <span class="new-price">{{ number_format($productDetail->pro_price,0,',','.') }} đ</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="product-desc">
-                                    <p>{{ $productDetail->pro_content }}</p>
+                                    <p>{!! $productDetail->pro_content !!}</p>
                                 </div>
-                                <p class="availability in-stock">Availability: <span>In stock</span></p>
                                 <div class="actions-e">
                                     <div class="action-buttons-single">
-                                        <div class="inputx-content">
-                                            <label for="qty">Quantity:</label>
-                                            <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
-                                        </div>
                                         <div class="add-to-cart">
-                                            <a href="#">Add to cart</a>
-                                        </div>
-                                        <div class="add-to-links">
-                                            <div class="add-to-wishlist">
-                                                <a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                            </div>
+                                            <a href="{{ route('add.shopping.cart',$productDetail->id) }}">Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +180,11 @@
 
                                 </div>
                                 <div style="width: 20%">
+                                    @if (get_data_user('web'))
                                     <a href="#" class="js_rating_action" style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Gủi đánh giá của bạn</a>
+                                    @else
+                                        <a href="{{ route('get.login') }}"  style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Đăng nhập để đánh giá SP</a>
+                                    @endif
                                 </div>
                             </div>
                             <?php

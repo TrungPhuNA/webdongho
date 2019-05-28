@@ -91,6 +91,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-success">Xác nhận thông tin</button>
+                                        <a href="{{ route('get.form.pay_online') }}" class="btn btn-success">Thanh toán qua PAY</a>
                                     </div>
                                 </div>
                             </div>

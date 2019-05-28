@@ -10,10 +10,10 @@
             <div class="form-group">
                 <label for="pro_name">Chọn trang:</label>
                 <select name="type" class="form-control" >
-                    <option value="1">Về chúng tôi</option>
-                    <option value="2">Thông tin giao hàng</option>
-                    <option value="3">Chính sách bảo mật</option>
-                    <option value="4">Điều khoản sử dụng</option>
+                    <option value="1" {{ isset($page->ps_type) && $page->ps_type == 1? "selected='selected'" : "" }}>Về chúng tôi</option>
+                    <option value="2" {{ isset($page->ps_type) && $page->ps_type == 2? "selected='selected'" : "" }}>Thông tin giao hàng</option>
+                    <option value="3" {{ isset($page->ps_type) && $page->ps_type == 3? "selected='selected'" : "" }}>Chính sách bảo mật</option>
+                    <option value="4" {{ isset($page->ps_type) && $page->ps_type == 4? "selected='selected'" : "" }}>Điều khoản sử dụng</option>
                 </select>
             </div>
 

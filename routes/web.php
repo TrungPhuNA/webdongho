@@ -48,11 +48,17 @@ Route::prefix('shopping')->group(function () {
 	Route::get('/add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');
 	Route::get('/delete/{id}','ShoppingCartController@deleteProductItem')->name('delete.shopping.cart');
 	Route::get('/danh-sach','ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
+	Route::get('/update/{id}','ShoppingCartController@updateShoppingCart')->name('updateShoppingCart');
 });
 
 Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function(){
 	Route::get('/thanh-toan','ShoppingCartController@getFormPay')->name('get.form.pay');
 	Route::post('/thanh-toan','ShoppingCartController@saveInfoShoppingCart');
+	
+	// thanh toan online
+	Route::get('/thanh-toan-pay','ShoppingCartController@showFormPay')->name('get.form.pay_online');
+	Route::post('/thanh-toan-pay','ShoppingCartController@savePayOnline');
+	Route::get('/hoa-don/{id}','ShoppingCartController@getInvoice')->name('get.invoice');
 });
 
 Route::group(['prefix' => 'ajax','middleware' => 'CheckLoginUser'],function(){
