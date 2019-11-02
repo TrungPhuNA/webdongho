@@ -87,7 +87,7 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
 	Route::get('/password','UserController@updatePassword')->name('user.update.password');
 	Route::post('/password','UserController@saveUpdatePassword');
 	
-	Route::get('/san-pham-quan-tam','UserController@getProductCare')->name('user.list.product_care');
+	Route::get('/san-pham-yeu-thich','UserController@getProductWishlist')->name('user.list.product_wishlist');
 	Route::get('/san-pham-ban-chay','UserController@getProductPay')->name('user.list.product');
 });
 

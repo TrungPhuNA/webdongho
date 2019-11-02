@@ -32,6 +32,7 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> Nghệ An</a></li>
                 @if (get_data_user('web'))
                 <li><a href="#"><i class="fa fa-user"></i> Xin Chào {{ get_data_user('web','name') }}</a></li>
+                <li><a href="{{ route('user.update.info') }}"><i class="fa fa-user"></i> Thông tin tài khoản </a></li>
                 <li><a href="{{ route('get.logout.user') }}"><i class="fa fa-key"></i> Đăng xuất</a></li>
                 @else
                     <li><a href="{{ route('get.register') }}"><i class="fa fa-registered"></i> Đăng ký</a></li>
@@ -145,8 +146,8 @@
                     </ul>
                 </li>
                 <li><a href="#">Bài viết</a></li>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Liên hệ</a></li>
+                <li><a href="{{ route('get.about_us') }}" title="Về chúng tôi">Giới thiệu</a></li>
+                <li><a href="{{ route('get.contact') }}" title="Liên hệ">Liên hệ</a></li>
             </ul>
             <!-- /NAV -->
         </div>
@@ -166,50 +167,46 @@
             <div class="row">
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                            ut.</p>
+                        <h3 class="footer-title">Giới thiệu</h3>
+                        <p>Đây là đồ án tốt nghiệp. Là thành quả của quá trình nghiên cứu của tôi trong suốt thời gian qua. Và đồng thời
+                            được sự hướng dẫn tận tình của giáo viên hướng dẫn.</p>
                         <ul class="footer-links">
-                            <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker"></i>Hà Nội</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i>0988111222</a></li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i>supportwatch@email.com</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">Categories</h3>
+                        <h3 class="footer-title">Danh mục nổi bật</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Hot deals</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Cameras</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            @foreach($categoriesHot as $cateHot)
+                            <li>
+                                <a href="{{ route('get.list.product', [$cateHot->c_name, $cateHot->id]) }}">{{ $cateHot->c_name }}</a>
+                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="clearfix visible-xs"></div>
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">Information</h3>
+                        <h3 class="footer-title">Về chúng tôi</h3>
                         <ul class="footer-links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Orders and Returns</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="{{ route('get.giaohang') }}">Thông tin giao hàng</a></li>
+                            <li><a href="{{ route('get.baomat') }}">Bảo mật</a></li>
+                            <li><a href="{{ route('get.dieukhoansudung') }}">Điều khoản sử dụng</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
-                        <h3 class="footer-title">Service</h3>
+                        <h3 class="footer-title">Tài khoản của bạn</h3>
                         <ul class="footer-links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="{{ route('user.update.info') }}">Thông tin tài khoản</a></li>
+                            <li><a href="#">Lịch sử giao dịch</a></li>
+                            <li><a href="{{ route('user.list.product_wishlist') }}">Sản phẩm yêu thích</a></li>
                         </ul>
                     </div>
                 </div>

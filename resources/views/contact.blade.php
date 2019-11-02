@@ -1,22 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="container-inner">
-                        <ul>
-                            <li class="home">
-                                <a href="">Home</a>
-                                <span><i class="fa fa-angle-right"></i></span>
-                            </li>
-                            <li class="category3"><span>Liên hệ</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="main-contact-area">
         <div class="container">
             <div class="row">
@@ -33,9 +17,9 @@
                         </div>
                         <!-- google-map-area end -->
                         <!-- contact us form start -->
-                        <div class="contact-us-form">
+                        <div class="contact-us-form" style="margin: 15px 0">
                             <div class="contact-form">
-                                <span class="legend">Mời bạn điền thông tin liên hệ</span>
+                                <span class="legend" style="padding-left: 12px;font-size: 16px;">Mời bạn điền thông tin liên hệ</span>
                                 <form action="" method="post">
                                     @csrf
                                     <div class="form-top">
@@ -53,11 +37,11 @@
                                         </div>
                                         <div class="form-group col-sm-12 col-md-12 col-lg-10">
                                             <label>Nội dung <sup>*</sup></label>
-                                            <textarea class="yourmessage" name="c_content" required></textarea>
+                                            <textarea class="form-control" name="c_content"  required></textarea>
                                         </div>
                                     </div>
                                     <div class="submit-form form-group col-sm-12 submit-review">
-                                        <button type="submit" class="add-tag-btn">Gửi thông tin</button>
+                                        <button type="submit" class="btn btn-success">Gửi thông tin</button>
                                     </div>
                                 </form>
                             </div>

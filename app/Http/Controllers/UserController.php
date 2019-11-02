@@ -76,7 +76,7 @@ class UserController extends Controller
 		return view('user.product',compact('products'));
 	}
 	
-	public function getProductCare()
+	public function getProductWishlist()
 	{
 		return view('user.product_care');
 	}
