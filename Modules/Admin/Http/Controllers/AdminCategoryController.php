@@ -11,7 +11,7 @@ class AdminCategoryController extends Controller
 {
 	public function index()
 	{
-		$categories = Category::select('id','c_name','c_title_seo','c_active','c_home')->get();
+		$categories = Category::select('id','c_name','c_active','c_home')->get();
 		
 		$viewData = [
 			'categories' => $categories
@@ -55,8 +55,7 @@ class AdminCategoryController extends Controller
 			$category->c_name            = $requestCategory->name;
 			$category->c_slug            = str_slug($requestCategory->name);
 			$category->c_icon            = str_slug($requestCategory->icon);
-			$category->c_title_seo       = $requestCategory->c_title_seo ? $requestCategory->c_title_seo : $requestCategory->name;
-			$category->c_description_seo = $requestCategory->c_description_seo;
+			$category->c_author_id       = get_data_user('admins');
 			$category->save();
 		}catch (\Exception $exception)
 		{

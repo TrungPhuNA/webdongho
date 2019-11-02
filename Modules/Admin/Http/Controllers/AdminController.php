@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Transaction;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
@@ -19,23 +20,30 @@ class AdminController extends Controller
 	 */
 	public function index()
 	{
-		$ratings = Rating::with('user:id,name', 'product:id,pro_name')
-			->limit(10)->get();
-		
 		$contacts = Contact::limit(10)->get();
 		$countUser = User::count();
 		$countProduct = Product::count();
 		$countArticle = Article::count();
-		$countRating = Rating::count();
+
 		
 		// doanh thu ngay
-		$moneyDay = Transaction::whereDay('updated_at',date('d'))
+		$moneyDay = Transaction::whereDay('created_at',date('d'))
 			->where('tr_status',Transaction::STATUS_DONE)
 			->sum('tr_total');
 		
+		$mondayLast = Carbon::now()->startOfWeek();
+		$sundayFirst = Carbon::now()->endOfWeek();
+		$moneyWeed = Transaction::whereBetween('created_at',[$mondayLast,$sundayFirst])
+			->where('tr_status',Transaction::STATUS_DONE)
+			->sum('tr_total');
 		
 		// doanh thu thag
-		$moneyMonth = Transaction::whereMonth('updated_at',date('m'))
+		$moneyMonth = Transaction::whereMonth('created_at',date('m'))
+			->where('tr_status',Transaction::STATUS_DONE)
+			->sum('tr_total');
+		
+		// doanh thu nam
+		$moneyYear = Transaction::whereYear('created_at',date('Y'))
 			->where('tr_status',Transaction::STATUS_DONE)
 			->sum('tr_total');
 		
@@ -46,15 +54,15 @@ class AdminController extends Controller
 			],
 			[
 				"name" => "Doanh thu tuần",
-				"y"    => (int)$moneyDay
+				"y"    => (int)$moneyWeed
 			],
 			[
 				"name" => "Doanh thu tháng",
-				"y"    => (int)$moneyDay
+				"y"    => (int)$moneyMonth
 			],
 			[
 				"name" => "Doanh thu năm",
-				"y"    => (int)$moneyMonth
+				"y"    => (int)$moneyYear
 			]
 		];
 		
@@ -67,13 +75,13 @@ class AdminController extends Controller
 		
 		
 		$viewData = [
-			'ratings'         => $ratings,
+			'ratings'         => $ratings ?? null,
 			'contacts'        => $contacts,
 			'moneyDay'        => $moneyDay,
 			'moneyMonth'      => $moneyMonth,
 			'dataMoney'       => json_encode($dataMoney),
 			'transactionNews' => $transactionNews,
-			'countRating'     => $countRating,
+			'countRating'     => $countRating ??  null,
 			'countUser'       => $countUser,
 			'countProduct'    => $countProduct,
 			'countArticle'    => $countArticle,

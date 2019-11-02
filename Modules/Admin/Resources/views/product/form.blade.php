@@ -15,9 +15,9 @@
             <div class="form-group">
                 <label for="name">Mô tả:</label>
                 <textarea name="pro_description" class="form-control" id="" cols="30" rows="3" placeholder="Mô tả ngắn sản phẩm">{{ old('pro_description',isset($product->pro_description) ? $product->pro_description : '') }}</textarea>
-                @if($errors->has('pro_name'))
+                @if($errors->has('pro_description'))
                     <span class="error-text">
-                        {{$errors->first('pro_name')}}
+                        {{$errors->first('pro_description')}}
                     </span>
                 @endif
             </div>
@@ -49,6 +49,25 @@
                 @endif
             </div>
             <div class="form-group">
+                <label for="name">Nhà cung cấp:</label>
+                <select name="s_supplier_id" id="" class="form-control">
+                    <option value="">--Chọn nhà cung cấp--</option>
+                    @if(isset($suppliers))
+                        @foreach($suppliers as $supplier)
+                            <option value="{{ $supplier->id }}"
+                                    {{ old('s_supplier_id',isset($product->s_supplier_id) ? $product->s_supplier_id : '') == $category->id ? "selected='selected'" : "" }}>
+                                {{ $supplier->s_name }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @if($errors->has('s_supplier_id'))
+                    <span class="error-text">
+                        {{$errors->first('s_supplier_id')}}
+                    </span>
+                @endif
+            </div>
+            <div class="form-group">
                 <label for="pro_price">Giá sản phẩm:</label>
                 <input type="number" placeholder="Giá sản phẩm" class="form-control" value="{{ old('pro_price',isset($product->pro_price) ? $product->pro_price  : '') }}" name="pro_price">
                 @if($errors->has('pro_price'))
@@ -56,6 +75,11 @@
                         {{$errors->first('pro_price')}}
                     </span>
                 @endif
+            </div>
+            <div class="form-group">
+                <label for="name">Time bảo hành:</label>
+                <input type="date" placeholder="Thời gian bảo hành" class="form-control"
+                       name="pro_warranty" value="{{ old('pro_warranty',isset($product->pro_warranty) ? $product->pro_warranty  : '0') }}">
             </div>
             <div class="form-group">
                 <label for="name">% Khuyến mãi:</label>

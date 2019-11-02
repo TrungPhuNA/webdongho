@@ -30,6 +30,16 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 	
 		Route::get('/{action}/{id}','AdminCategoryController@action')->name('admin.get.action.category');
 	});
+
+    Route::group(['prefix' => 'supplier'], function(){
+        Route::get('/','AdminSupplierController@index')->name('admin.get.list.supplier');
+        Route::get('/create','AdminSupplierController@create')->name('admin.get.create.supplier');
+        Route::post('/create','AdminSupplierController@store');
+        Route::get('/update/{id}','AdminSupplierController@edit')->name('admin.get.edit.supplier');
+        Route::post('/update/{id}','AdminSupplierController@update');
+
+        Route::get('delete/{id}','AdminSupplierController@delete')->name('admin.get.delete.supplier');
+    });
 	
 	Route::group(['prefix' => 'product'], function(){
 		Route::get('/','AdminProductController@index')->name('admin.get.list.product');

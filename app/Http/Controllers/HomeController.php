@@ -18,7 +18,8 @@ class HomeController extends FrontendController
 	
 	public function index()
 	{
-		$productHot = Product::where([
+		$productHot = Product::with('category:id,c_name')
+        ->where([
 		   'pro_hot' => Product::HOT_ON,
 		   'pro_active' => Product::STATUS_PUBLIC
 		])->limit(5)->get();
@@ -32,35 +33,7 @@ class HomeController extends FrontendController
 				->get();
 		
 		$productSuggest = [];
-		//Kiểm tra nguồ dùng dang nhap
-		if (get_data_user('web'))
-		{
-			$transactions = Transaction::where([
-				'tr_user_id' => get_data_user('web'),
-				'tr_status'  => Transaction::STATUS_DONE
-			])->pluck('id');
-			
-			if (!empty($transactions))
-			{
-				$listId = Order::whereIn('or_transaction_id',$transactions)->distinct()->pluck('or_product_id');
-				
-				if ( !empty($listId))
-				{
-					
-					$listIdCategory = Product::whereIn('id',$listId)->distinct()->pluck('pro_category_id');
-					
-					if ($listIdCategory)
-					{
-						$productSuggest = Product::whereIn('pro_category_id',$listIdCategory)->limit(8)->get();
-					}
-					
-				}
-				
-			}
-			
-		}
-		// chua dang nhap thi thoi
-		
+
 		$viewData = [
 			'productHot'     => $productHot,
 			'articleNews'    => $articleNews,
@@ -68,7 +41,8 @@ class HomeController extends FrontendController
 			'productSuggest' => $productSuggest,
 		];
 		
-        return view('home.index',$viewData);
+        return view('home.index_2',$viewData);
+        // return view('home.index',$viewData);
     }
     
     public function renderProductView(Request $request)
@@ -81,6 +55,5 @@ class HomeController extends FrontendController
 			
 			return response()->json(['data' => $html]);
 		}
-		
 	}
 }

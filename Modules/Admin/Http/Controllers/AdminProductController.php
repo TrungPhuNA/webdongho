@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Requests\RequestProduct;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -32,8 +33,9 @@ class AdminProductController extends Controller
 	public function create()
 	{
 		$categories = $this->getCategories();
+		$suppliers  = $this->getSupplier();
 		
-		return view('admin::product.create',compact('categories'));
+		return view('admin::product.create',compact('categories','suppliers'));
 	}
 	
 	public function store(RequestProduct $requestProduct)
@@ -47,7 +49,8 @@ class AdminProductController extends Controller
 	{
 		$product    = Product::find($id);
 		$categories = $this->getCategories();
-		return view('admin::product.update',compact('product','categories'));
+        $suppliers  = $this->getSupplier();
+		return view('admin::product.update',compact('product','categories','suppliers'));
 	}
 	
 	public function update(RequestProduct $requestProduct,$id)
@@ -61,24 +64,34 @@ class AdminProductController extends Controller
 	{
 		return Category::all();
 	}
+
+	public function getSupplier()
+    {
+        return Supplier::select('id','s_name')->orderByDesc('id')->get();
+    }
 	
 	public function insertOrUpdate($requestProduct,$id='')
 	{
 		$product = new Product();
 		
 		if ($id) $product = Product::find($id);
-		
-		$product->pro_name            = $requestProduct->pro_name;
-		$product->pro_slug            = str_slug($requestProduct->pro_name);
-		$product->pro_category_id     = $requestProduct->pro_category_id;
-		$product->pro_price           = $requestProduct->pro_price;
-		$product->pro_sale            = $requestProduct->pro_sale;
-		$product->pro_number            = $requestProduct->pro_number;
-		$product->pro_description     = $requestProduct->pro_description;
-		$product->pro_content         = $requestProduct->pro_content;
-		$product->pro_title_seo       = $requestProduct->pro_title_seo ? $requestProduct->pro_title_seo : $requestProduct->pro_name;
-		$product->pro_description_seo = $requestProduct->pro_description_seo ? $requestProduct->pro_description_seo : $requestProduct->pro_description_seo;
-		
+
+        $product->pro_name            = $requestProduct->pro_name;
+        $product->pro_slug            = str_slug($requestProduct->pro_name);
+        $product->pro_category_id     = $requestProduct->pro_category_id;
+        $product->pro_price           = $requestProduct->pro_price;
+        $product->pro_sale            = $requestProduct->pro_sale;
+        $product->pro_number          = $requestProduct->pro_number;
+        $product->pro_description     = $requestProduct->pro_description;
+        $product->pro_content         = $requestProduct->pro_content;
+        $product->pro_title_seo       = $requestProduct->pro_title_seo ? $requestProduct->pro_title_seo : $requestProduct->pro_name;
+        $product->pro_description_seo = $requestProduct->pro_description_seo ? $requestProduct->pro_description_seo : $requestProduct->pro_description_seo;
+        $product->s_supplier_id       = $requestProduct->s_supplier_id;
+        $product->pro_author_id       = get_data_user('admins');
+
+        if ($product->pro_warranty) {
+		    $product->pro_warranty = $requestProduct->pro_warranty;
+        }
 		if ( $requestProduct->hasFile('avatar'))
 		{
 			$file = upload_image('avatar');

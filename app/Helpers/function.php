@@ -42,7 +42,6 @@ if (!function_exists('upload_image'))
 			$path = public_path().'/uploads/'.$folder.'/'.date('Y/m/d/');
 		}
 		
-		
 		if ( !\File::exists($path))
 		{
 			mkdir($path,0777,true);
