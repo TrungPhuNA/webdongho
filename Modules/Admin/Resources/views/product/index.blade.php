@@ -59,7 +59,9 @@
                          <tr>
                              <td>{{ $product->id }}</td>
                              <td>
-                                 {{ $product->pro_name }}
+                                 <div style="width: 300px">
+                                     {{ $product->pro_name }}
+                                 </div>
                                  <ul style="padding-left: 15px;">
                                      <li><span style="width: 20px;margin-right: 10px"><i class="fas fa-dollar-sign" style="font-size: 11px"></i></span><span>{{ number_format($product->pro_price,0,',','.') }} (đ)</span></li>
                                      <li><span style="width: 20px;margin-right: 10px"><i class="fas fa-dollar-sign" style="font-size: 11px"></i></span><span>{{ $product->pro_sale }} (%)</span></li>
