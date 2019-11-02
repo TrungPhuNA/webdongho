@@ -18,12 +18,22 @@ class HomeController extends FrontendController
 	
 	public function index()
 	{
+	    // san pham noi bat
 		$productHot = Product::with('category:id,c_name')
         ->where([
 		   'pro_hot' => Product::HOT_ON,
 		   'pro_active' => Product::STATUS_PUBLIC
 		])->limit(5)->get();
-		
+
+
+		// san pham moi
+        $productNews = Product::with('category:id,c_name')
+            ->where([
+                'pro_active' => Product::STATUS_PUBLIC
+            ])->limit(12)
+            ->orderByDesc('id')
+            ->get();
+
 		$articleNews = Article::orderBy('id','DESC')->limit(6)->get();
 		
 		$categoriesHome = Category::with('products')
@@ -39,6 +49,7 @@ class HomeController extends FrontendController
 			'articleNews'    => $articleNews,
 			'categoriesHome' => $categoriesHome,
 			'productSuggest' => $productSuggest,
+            'productNews'    => $productNews
 		];
 		
         return view('home.index_2',$viewData);

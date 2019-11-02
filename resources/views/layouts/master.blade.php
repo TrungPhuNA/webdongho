@@ -144,7 +144,20 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="/">Trang chủ</a></li>
-                <li><a href="#">Sản phẩm</a></li>
+                <li>
+                    <a href="#">Sản phẩm</a>
+                    <ul>
+                        @if (isset($categories))
+                            @foreach($categories as $category)
+                                <li>
+                                    <a href="" title="{{ $category->c_name }}">
+                                        {{ $category->c_name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </li>
                 <li><a href="#">Bài viết</a></li>
                 <li><a href="#">Giới thiệu</a></li>
                 <li><a href="#">Liên hệ</a></li>
