@@ -77,7 +77,7 @@
                         <div>
                             <h3 class="product-price">
                                 @if ($productDetail->pro_sale)
-                                    {{ number_format($productDetail->pro_price * (100 - $productDetail->pro_sale) * 100,0,',','.') }} VNĐ
+                                    {{ number_format($productDetail->pro_price * (100 - $productDetail->pro_sale) / 100,0,',','.') }} VNĐ
                                     <del class="product-old-price">{{ number_format($productDetail->pro_price,0,',','.') }}</del> VNĐ</h4>
                                 @else
                                     {{ number_format($productDetail->pro_price,0,',','.') }} VNĐ
@@ -356,7 +356,7 @@
                             <h3 class="product-name"><a href="#">{{ $product->pro_name }}</a></h3>
                             <h4 class="product-price">
                                 @if ($product->pro_sale)
-                                    {{ number_format($product->pro_price * (100 - $product->pro_sale) * 100,0,',','.') }} VNĐ
+                                    {{ number_format($product->pro_price * (100 - $product->pro_sale) / 100,0,',','.') }} VNĐ
                                     <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ</h4>
                                 @else
                                     {{ number_format($product->pro_price,0,',','.') }} VNĐ
