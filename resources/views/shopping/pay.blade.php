@@ -1,27 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="container-inner">
-                        <ul>
-                            <li class="home">
-                                <a href="">Home</a>
-                                <span><i class="fa fa-angle-right"></i></span>
-                            </li>
-                            <li class="home">
-                                <a href="">Giỏ hàng</a>
-                                <span><i class="fa fa-angle-right"></i></span>
-                            </li>
-                            <li class="category3"><span>Thanh toán</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main-contact-area">
+    
+    <div class="main-contact-area" style="margin-top: 40px">
         <div class="container wrapper">
             <div class="row cart-body">
                 <form class="form-horizontal" method="post" action="">
@@ -73,13 +53,13 @@
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Email:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="email" class="form-control" value="{{ get_data_user('web','email') }}" />
+                                        <input type="text" disabled="" name="email" class="form-control" value="{{ get_data_user('web','email') }}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12"><strong>Số điện thoại:</strong></div>
                                     <div class="col-md-12">
-                                        <input type="text" name="phone" class="form-control" value="{{ get_data_user('web','phone') }}" />
+                                        <input type="text" disabled="" name="phone" class="form-control" value="{{ get_data_user('web','phone') }}" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -91,7 +71,7 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-success">Xác nhận thông tin</button>
-                                        <a href="{{ route('get.form.pay_online') }}" class="btn btn-success">Thanh toán qua PAY</a>
+{{--                                        <a href="{{ route('get.form.pay_online') }}" class="btn btn-success">Thanh toán qua PAY</a>--}}
                                     </div>
                                 </div>
                             </div>

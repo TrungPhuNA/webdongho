@@ -22,11 +22,9 @@
             @endif
         <div class="product-btns">
             <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào yêu thích</span></button>
-            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào giỏ hàng</span></button>
+            <a href="{{ route('add.shopping.cart', $product->id) }}" title="Thêm giỏ hàng" class="add-to-compare"><i class="fa fa-shopping-cart"></i>
+            </a>
             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem</span></button>
         </div>
-    </div>
-    <div class="add-to-cart">
-        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Mua Nhanh</button>
     </div>
 </div>

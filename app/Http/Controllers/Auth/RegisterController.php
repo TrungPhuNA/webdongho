@@ -37,27 +37,30 @@ class RegisterController extends Controller
 		
 		if ($user->id)
 		{
-			$email = $user->email;
-			
-			$code = bcrypt(md5(time().$email));
-			$url = route('user.verify.account',['id' => $user->id,'code' => $code]);
-			
-			$user->code_active = $code;
-			$user->time_active = Carbon::now();
-			$user->save();
-			
-			$data = [
-				'route' => $url
-			];
-			
-			Mail::send('email.verify_account', $data, function($message) use ($email){
-				$message->to($email, 'Xác nhận tài khoản')->subject('Xác nhận tài khoản');
-			});
-			
-			return redirect()->route('get.login');
+			// $email = $user->email;
+			//
+			// $code = bcrypt(md5(time().$email));
+			// $url = route('user.verify.account',['id' => $user->id,'code' => $code]);
+			//
+			// $user->code_active = $code;
+			// $user->time_active = Carbon::now();
+			// $user->save();
+			//
+			// $data = [
+			// 	'route' => $url
+			// ];
+			//
+			// Mail::send('email.verify_account', $data, function($message) use ($email){
+			// 	$message->to($email, 'Xác nhận tài khoản')->subject('Xác nhận tài khoản');
+			// });
+
+            if (\Auth::guard('web')->loginUsingId($user->id))
+            {
+                return redirect('/');
+            }
 		}
-		
-		return redirect()->back();
+
+        return redirect()->route('get.login');
 	}
 	
 	/**

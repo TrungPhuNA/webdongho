@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <div class="our-product-area new-product">
         <div class="container">
             <div class="area-title">
-                <h2>Giỏ hàng của bạn</h2>
+                <h2 style="margin-top: 20px">Giỏ hàng của bạn</h2>
             </div>
             <table class="table">
                 <thead>
@@ -42,7 +42,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <h5 class="pull-right">Tổng tiền cần thanh toán {{ Cart::subtotal() }} <a href="{{ route('get.form.pay') }}" class="btn-success btn">Thanh toán</a></h5>
+            <h5 class="pull-right">Tổng tiền cần thanh toán {{ \Cart::instance('cart')->subtotal() }} <a href="{{ route('get.form.pay') }}" class="btn-success btn">Thanh toán</a></h5>
 
         </div>
     </div>

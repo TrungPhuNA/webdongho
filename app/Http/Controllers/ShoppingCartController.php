@@ -37,7 +37,7 @@ class ShoppingCartController extends FrontendController
 			return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
 		}
 		
-		\Cart::add([
+		\Cart::instance('cart')->add([
 			'id'      => $id,
 			'name'    => $product->pro_name,
 			'qty'     => 1,
@@ -54,7 +54,7 @@ class ShoppingCartController extends FrontendController
 	
 	public function deleteProductItem($key)
 	{
-		\Cart::remove($key);
+		\Cart::instance('cart')->remove($key);
 		
 		return redirect()->back();
 	}
@@ -65,7 +65,7 @@ class ShoppingCartController extends FrontendController
 	 */
 	public function getListShoppingCart()
 	{
-		$products = \Cart::content();
+		$products = \Cart::instance('cart')->content();
 		return view('shopping.index',compact('products'));
 	}
 	
@@ -74,7 +74,7 @@ class ShoppingCartController extends FrontendController
 	 */
 	public function getFormPay()
 	{
-		$products = \Cart::content();
+		$products = \Cart::instance('cart')->content();
 		return view('shopping.pay',compact('products'));
 	}
 	
@@ -83,7 +83,7 @@ class ShoppingCartController extends FrontendController
 	 */
 	public function saveInfoShoppingCart(Request $request)
 	{
-		$totalMoney = str_replace(',','',\Cart::subtotal(0,3));
+		$totalMoney = str_replace(',','',\Cart::instance('cart')->subtotal(0,3));
 		$transactionId = 	Transaction::insertGetId([
 			'tr_user_id' => get_data_user('web'),
 			'tr_total'   =>  (int)$totalMoney,
@@ -93,15 +93,16 @@ class ShoppingCartController extends FrontendController
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		]);
-		
+
 		if ($transactionId)
 		{
-			$products = \Cart::content();
+			$products = \Cart::instance('cart')->content();
 			foreach ($products as $product)
 			{
 				Order::insert([
-					'or_transaction_id'	 => $transactionId,
+					'or_transaction_id'	  => $transactionId,
 					'or_product_id'         => $product->id,
+					'or_user_id'           => get_data_user('web'),
 					'or_qty'                => $product->qty,
 					'or_price'              => $product->options->price_old,
 					'or_sale'               => $product->options->sale,
@@ -109,7 +110,7 @@ class ShoppingCartController extends FrontendController
 			}
 		}
 		
-		\Cart::destroy();
+		\Cart::instance('cart')->destroy();
 		
 		return redirect()->route('get.invoice',$transactionId);
 	}
@@ -119,7 +120,7 @@ class ShoppingCartController extends FrontendController
 	 */
 	public function updateShoppingCart(Request $request, $id)
 	{
-		\Cart::update($id, ['qty' => $request->qty]);
+		\Cart::instance('cart')->update($id, ['qty' => $request->qty]);
 		return redirect()->back()->with('success','Cập nhật thành công');
 	}
 	
@@ -132,7 +133,7 @@ class ShoppingCartController extends FrontendController
 		      $transaction = Transaction::find($transactionID);
 		      if ($transaction)
 			  {
-				  \Cart::destroy();
+				  \Cart::instance('cart')->destroy();
 				  $transaction->tr_type = Transaction::TYPE_PAY;
 				  $transaction->save();
 				  
@@ -145,7 +146,7 @@ class ShoppingCartController extends FrontendController
 			
 		}
 		
-		$products = \Cart::content();
+		$products = \Cart::instance('cart')->content();
 		return view('shopping.pay_online',compact('products'));
 	}
 	

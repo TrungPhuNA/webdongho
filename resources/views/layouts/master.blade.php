@@ -16,7 +16,7 @@
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/nouislider.min.css') }}"/>
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.cs') }}s">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 </head>
@@ -30,6 +30,13 @@
                 <li><a href="#"><i class="fa fa-phone"></i> 0986.420.994</a></li>
                 <li><a href="#"><i class="fa fa-envelope-o"></i> phupt.humg.94@email.com</a></li>
                 <li><a href="#"><i class="fa fa-map-marker"></i> Nghệ An</a></li>
+                @if (get_data_user('web'))
+                <li><a href="#"><i class="fa fa-user"></i> Xin Chào {{ get_data_user('web','name') }}</a></li>
+                <li><a href="{{ route('get.logout.user') }}"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                @else
+                    <li><a href="{{ route('get.register') }}"><i class="fa fa-registered"></i> Đăng ký</a></li>
+                    <li><a href="{{ route('get.login') }}"><i class="fa fa-user-circle"></i> Đăng nhập</a></li>
+                @endif
             </ul>
         </div>
     </div>
@@ -43,7 +50,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="#" class="logo">
+                        <a href="/" class="logo">
                             <img src="./img/logo.png" alt="">
                         </a>
                     </div>
@@ -70,50 +77,16 @@
                         <div>
                             <a href="#">
                                 <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
                                 <div class="qty">2</div>
                             </a>
                         </div>
                         <!-- /Wishlist -->
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <a  href="{{ route('get.list.shopping.cart') }}"  title="Giỏ hàng của bạn">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
-                                <div class="qty">3</div>
+                                <div class="qty">{{ \Cart::instance('cart')->count() }}</div>
                             </a>
-                            <div class="cart-dropdown">
-                                <div class="cart-list">
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-                                </div>
-                                <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
                         </div>
                         <!-- /Cart -->
                         <!-- Menu Toogle -->
