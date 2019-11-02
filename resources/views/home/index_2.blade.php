@@ -76,7 +76,6 @@
                                     @if (isset($productHot))
                                     <!-- product -->
                                         @foreach($productHot as $product)
-                                            {{--{{ dd($product) }}--}}
                                              <div class="product">
                                                 <div class="product-img">
                                                     <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" style="width: 263px;height: 263px">
@@ -89,7 +88,9 @@
                                                 </div>
                                                 <div class="product-body">
                                                     <p class="product-category">{{ $product->category->c_name }}</p>
-                                                    <h3 class="product-name"><a href="#">{{ $product->pro_name }}</a></h3>
+                                                    <h3 class="product-name">
+                                                        <a href="{{ route('get.detail.product',[$product->pro_slug, $product->id]) }}">{{ $product->pro_name }}</a>
+                                                    </h3>
                                                     <h4 class="product-price">
                                                         @if ($product->pro_sale)
                                                             {{ number_format($product->pro_price * (100 - $product->pro_sale) * 100,0,',','.') }} VNĐ
@@ -97,13 +98,6 @@
                                                         @else
                                                             {{ number_format($product->pro_price,0,',','.') }} VNĐ
                                                         @endif
-                                                    {{--<div class="product-rating">--}}
-                                                        {{--<i class="fa fa-star"></i>--}}
-                                                        {{--<i class="fa fa-star"></i>--}}
-                                                        {{--<i class="fa fa-star"></i>--}}
-                                                        {{--<i class="fa fa-star"></i>--}}
-                                                        {{--<i class="fa fa-star"></i>--}}
-                                                    {{--</div>--}}
                                                     <div class="product-btns">
                                                         <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào yêu thích</span></button>
                                                         <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào giỏ hàng</span></button>
