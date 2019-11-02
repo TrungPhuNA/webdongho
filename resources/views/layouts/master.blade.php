@@ -177,18 +177,20 @@
                         </ul>
                     </div>
                 </div>
+                @if (isset($categoriesHot))
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Danh mục nổi bật</h3>
                         <ul class="footer-links">
                             @foreach($categoriesHot as $cateHot)
                             <li>
-                                <a href="{{ route('get.list.product', [$cateHot->c_name, $cateHot->id]) }}">{{ $cateHot->c_name }}</a>
+                                <a href="{{ route('get.list.product', [$cateHot->c_slug, $cateHot->id]) }}">{{ $cateHot->c_name }}</a>
                             </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
+                @endif
                 <div class="clearfix visible-xs"></div>
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">

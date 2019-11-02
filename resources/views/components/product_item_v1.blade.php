@@ -15,7 +15,7 @@
         </h3>
         <h4 class="product-price">
             @if ($product->pro_sale)
-                {{ number_format($product->pro_price * (100 - $product->pro_sale) * 100,0,',','.') }} VNĐ
+                {{ number_format($product->pro_price * (100 - $product->pro_sale) / 100,0,',','.') }} VNĐ
                 <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ</h4>
             @else
                 {{ number_format($product->pro_price,0,',','.') }} VNĐ

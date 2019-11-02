@@ -48,6 +48,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('/update/{id}','AdminProductController@edit')->name('admin.get.edit.product');
 		Route::post('/update/{id}','AdminProductController@update');
 		Route::get('delete/{id}','AdminProductController@delete')->name('admin.get.delete.product');
+		Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.get.delete_image.product');
 		Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
 	});
 	

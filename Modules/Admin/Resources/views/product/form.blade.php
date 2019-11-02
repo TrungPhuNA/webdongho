@@ -21,6 +21,21 @@
                     </span>
                 @endif
             </div>
+            @if (isset($images))
+            <div class="row">
+                @foreach($images as $img)
+                <div class="col-sm-2">
+                    <a href="{{ route('admin.get.delete_image.product', $img->id) }}" title="Click để xoá ảnh">
+                        <img src="{{ pare_url_file($img->pi_slug) }}" alt="" style="height: 100px" class="img img-responsive">
+                    </a>
+                </div>
+                @endforeach
+            </div>
+            @endif
+            <div class="form-group">
+                <label for="name">Ảnh sản phảm:</label>
+                <input type="file" name="album[]" multiple>
+            </div>
             <div class="form-group">
                 <label for="name">Nội dung:</label>
                 <textarea name="pro_content" class="form-control" id="pro_content" cols="30" rows="3" placeholder="Nội dung">{{ old('pro_content',isset($product->pro_content) ? $product->pro_content : '') }}</textarea>
@@ -55,7 +70,7 @@
                     @if(isset($suppliers))
                         @foreach($suppliers as $supplier)
                             <option value="{{ $supplier->id }}"
-                                    {{ old('s_supplier_id',isset($product->s_supplier_id) ? $product->s_supplier_id : '') == $category->id ? "selected='selected'" : "" }}>
+                                    {{ old('s_supplier_id',isset($product->s_supplier_id) ? $product->s_supplier_id : '') == $supplier->id ? "selected='selected'" : "" }}>
                                 {{ $supplier->s_name }}
                             </option>
                         @endforeach

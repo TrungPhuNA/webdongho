@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Requests\RequestProduct;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -50,7 +51,9 @@ class AdminProductController extends Controller
 		$product    = Product::find($id);
 		$categories = $this->getCategories();
         $suppliers  = $this->getSupplier();
-		return view('admin::product.update',compact('product','categories','suppliers'));
+        $images     = ProductImage::where('pi_product_id', $id)->get();
+
+		return view('admin::product.update',compact('product','categories','suppliers','images'));
 	}
 	
 	public function update(RequestProduct $requestProduct,$id)
@@ -103,13 +106,54 @@ class AdminProductController extends Controller
 		}
 		
 		$product->save();
+
+		if ($product->id && $requestProduct->hasFile('album')) {
+            $this->uploadAlbumImage($requestProduct->file('album'), $id);
+        }
 	}
+
+	public function uploadAlbumImage($files, $product_id)
+    {
+        ProductImage::where('pi_product_id', $product_id)->delete();
+        foreach ($files as $fileKey => $fileImage ) {
+            $ext = $fileImage->getClientOriginalExtension();
+
+            $extend = ['png','jpg','jpeg', 'PNG', 'JPG','webp'];
+
+            if( !in_array($ext,$extend))
+            {
+                return false;
+            }
+
+            $filename = date('Y-m-d__').str_slug($fileImage->getClientOriginalName()).'.'.$ext;
+            
+            $path = public_path().'/uploads/'.date('Y/m/d/');
+            if ( !\File::exists($path))
+            {
+                mkdir($path,0777,true);
+            }
+
+            // di chuyen file vao thu muc uploads
+            $fileImage->move($path,$filename);
+            $productImage = new ProductImage();
+            $productImage->pi_name = $fileImage->getClientOriginalName();
+            $productImage->pi_slug = $filename;
+            $productImage->pi_product_id = $product_id;
+            $productImage->save();
+        }
+    }
 	
 	public function delete($id)
 	{
 		\DB::table('products')->where('id',$id)->delete();
 		return redirect()->back();
 	}
+
+	public function deleteImage($id)
+    {
+        ProductImage::where('id', $id)->delete();
+        return redirect()->back()->with('success','Xoá thành công');
+    }
 	
 	public function action($action,$id)
 	{

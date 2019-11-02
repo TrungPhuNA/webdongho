@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends FrontendController
@@ -25,6 +26,9 @@ class ProductDetailController extends FrontendController
                     ->where('pro_active',Product::STATUS_PUBLIC)
                     ->findOrFail($id);
 
+			// Ảnh sản phẩm
+            $images = ProductImage::where('pi_product_id', $id)->get();
+
 			// Danh mục sản phẩm đó
 			$cateProduct = Category::find($productDetail->pro_category_id);
 
@@ -39,6 +43,7 @@ class ProductDetailController extends FrontendController
                 'productDetail'  => $productDetail,
                 'cateProduct'    => $cateProduct,
                 'productSuggest' => $productSuggest,
+                'images'         => $images
 			];
 			
 			return view('product.detail',$viewData);
