@@ -75,7 +75,8 @@
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        font-size: 14px;
     }
 
     .invoice table td,.invoice table th {

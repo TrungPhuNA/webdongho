@@ -30,7 +30,7 @@
                     <div id="product-main-img">
                         @foreach($images as $image)
                         <div class="product-preview">
-                            <img src="{{ pare_url_file($image->pi_slug) }}" alt="">
+                            <img src="{{ pare_url_file($image->pi_slug) }}" alt="" style="height: 360px">
                         </div>
                         @endforeach
                     </div>
@@ -41,7 +41,7 @@
                     <div id="product-imgs">
                         @foreach($images as $image)
                             <div class="product-preview">
-                                <img src="{{ pare_url_file($image->pi_slug) }}" alt="">
+                                <img src="{{ pare_url_file($image->pi_slug) }}" alt="" style="height: 120px">
                             </div>
                         @endforeach
                         {{----}}
