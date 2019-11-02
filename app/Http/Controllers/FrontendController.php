@@ -10,7 +10,10 @@ class FrontendController extends Controller
 {
     public function __construct()
 	{
-		$categories = Category::where('c_active',Category::STATUS_PUBLIC)->get();
+		$categories = Category::with('children:id,c_name,c_slug,c_parent_id')
+            ->where('c_active',Category::STATUS_PUBLIC)
+            ->whereNull('c_parent_id')
+            ->get();
 		View::share('categories', $categories);
 	}
 }

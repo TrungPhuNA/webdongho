@@ -9,6 +9,18 @@
             </span>
         @endif
     </div>
+    <div class="form-group">
+        <label for="name">Danh mục cha:</label>
+        <select name="c_parent_id" id="" class="form-control">
+            <option value="0">__ROOT__</option>
+            @foreach($categoriesSort as $cate)
+                <option value="{{ $cate->id }}" {{  isset($category->c_parent_id) == $cate->id ? "selected='selected'" : "" }}>
+                    <?php $str = ''; for($i = 0; $i < $cate->level; $i ++){ echo $str; $str .= '-- '; }?>
+                    {{ $cate->c_name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
     <div class="form-group">
         <label for="name">Icon:</label>

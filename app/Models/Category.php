@@ -35,6 +35,22 @@ class Category extends Model
 			'class' => 'label-default'
 		]
 	];
+
+    public static function recursive($categories, $parents = 0, $level = 1, &$categoriesSort)
+    {
+        if (count($categories) > 0) {
+            foreach ($categories as $key => $value) {
+                if ($value->c_parent_id == $parents) {
+                    $value->level     = $level;
+                    $categoriesSort[] = $value;
+                    unset($categories[$key]);
+                    $new_parent = $value->id;
+
+                    self::recursive($categories, $new_parent, $level + 1, $categoriesSort);
+                }
+            }
+        }
+    }
     
     public function getStatus()
 	{
@@ -50,4 +66,17 @@ class Category extends Model
 	{
 		return $this->hasMany(Product::class,'pro_category_id');
 	}
+
+	public function children()
+    {
+        return $this->hasMany(Category::class,'c_parent_id','id');
+    }
+
+    public static function getListMenuSort()
+    {
+        $categories = Category::all();
+        Category::recursive($categories,$parent = 0,$level = 1,$categoriesSort);
+
+        return $categoriesSort;
+    }
 }

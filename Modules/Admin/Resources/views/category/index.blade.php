@@ -24,7 +24,10 @@
                     @foreach($categories as $category)
                         <tr>
                             <td>{{ $category->id }}</td>
-                            <td>{{ $category->c_name }}</td>
+                            <td>
+                                <?php $str = '' ;for($i = 0; $i < $category->level; $i ++){ echo $str; $str .= '---| '; }?>
+                                {{ $category->c_name }}
+                            </td>
                             <td>
                                 <a href="{{ route('admin.get.action.category',['home',$category->id]) }}">{{ $category->getHome($category->c_home)['name'] }}</a>
                             </td>

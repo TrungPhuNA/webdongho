@@ -11,18 +11,21 @@ class AdminCategoryController extends Controller
 {
 	public function index()
 	{
-		$categories = Category::select('id','c_name','c_active','c_home')->get();
-		
+        $categories = Category::getListMenuSort();
 		$viewData = [
 			'categories' => $categories
 		];
+
+
 		
 		return view('admin::category.index',$viewData);
 	}
 	
 	public function create()
 	{
-		return view('admin::category.create');
+	    $categoriesSort = Category::getListMenuSort();
+
+		return view('admin::category.create',compact('categoriesSort'));
 	}
 	
 	public function store(RequestCategory $requestCategory)
@@ -33,8 +36,9 @@ class AdminCategoryController extends Controller
 	
 	public function edit($id)
 	{
+        $categoriesSort = Category::getListMenuSort();
 		$category  = Category::find($id);
-		return view('admin::category.update',compact('category'));
+		return view('admin::category.update',compact('category','categoriesSort'));
 	}
 	
 	public function update(RequestCategory $requestCategory,$id)
@@ -54,6 +58,7 @@ class AdminCategoryController extends Controller
 			}
 			$category->c_name            = $requestCategory->name;
 			$category->c_slug            = str_slug($requestCategory->name);
+			$category->c_parent_id       = $requestCategory->c_parent_id;
 			$category->c_icon            = str_slug($requestCategory->icon);
 			$category->c_author_id       = get_data_user('admins');
 			$category->save();
@@ -95,7 +100,6 @@ class AdminCategoryController extends Controller
 			
 			
 		}
-		
 		return redirect()->back()->with('success',$messages);
 	}
 }
