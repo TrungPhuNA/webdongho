@@ -31,7 +31,7 @@
                                 </td>
                                 <td>{{ number_format($product->price,0,',','.') }}đ</td>
                                 <td>
-                                    <form action="{{ route('updateShoppingCart',$product->rowId) }}" method="POST" style="display: flex;">
+                                    <form action="{{ route('updateShoppingCart',$product->rowId) }}" method="GET" style="display: flex;">
                                         <input type="number" min="1" max="10" class="form-control" style="width: 70px;margin-right: 5px" value="{{ $product->qty }}" name="qty">
                                         <button type="submit" class="btn btn-xs btn-success"><i class="fa fa-pencil"></i> Update</button>
                                     </form>
