@@ -81,6 +81,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 	// ql thanh vien
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/','AdminUserController@index')->name('admin.get.list.user');
+        Route::get('/delete/{id}','AdminUserController@delete')->name('admin.get.delete.user');
 	});
 	
 	// ql danh gia

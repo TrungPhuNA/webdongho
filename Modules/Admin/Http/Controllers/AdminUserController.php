@@ -2,6 +2,8 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -20,5 +22,15 @@ class AdminUserController extends Controller
 		];
     	
         return view('admin::user.index',$viewData);
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        Order::where('or_user_id', $id)->delete();
+        Transaction::where('tr_user_id', $id)->delete();
+        $user->delete();
+        
+        return redirect()->back();
     }
 }

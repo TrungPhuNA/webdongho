@@ -16,6 +16,7 @@
                 <th>Tên hiển thị </th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Thao Tác</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                              <td>{{ $user->name }}</td>
                              <td>{{ $user->email }}</td>
                              <td>{{ $user->phone }}</td>
+                             <td>
+                                 <a href="{{ route('admin.get.delete.user', $user->id) }}">Delete</a>
+                             </td>
                          </tr>
                      @endforeach
                  @endif
