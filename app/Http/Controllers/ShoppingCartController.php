@@ -121,7 +121,6 @@ class ShoppingCartController extends FrontendController
 	public function updateShoppingCart(Request $request, $id)
 	{
 		\Cart::instance('cart')->update($id, ['qty' => $request->qty]);
-		dd($request->all());
 		return redirect()->back()->with('success','Cập nhật thành công');
 	}
 	
