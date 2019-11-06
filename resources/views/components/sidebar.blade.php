@@ -4,10 +4,12 @@
     <div class="checkbox-filter">
         @foreach($categoryChildren as $cate)
             <div class="input-checkbox">
-                <input type="checkbox" id="category-1">
-                <label for="category-1">
-                    <span></span>{{ $cate->c_name }}<small></small>
-                </label>
+                <a href="{{ route('get.list.product', [$cate->c_slug, $cate->id]) }}" class="js-reload">
+                    <input type="checkbox" id="category-{{ $cate->id }}">
+                    <label for="category-{{ $cate->id }}">
+                        <span></span>{{ $cate->c_name }}<small></small>
+                    </label>
+                </a>
             </div>
         @endforeach
     </div>
@@ -40,9 +42,9 @@
     <div class="checkbox-filter">
         @foreach($suppliers as $supplier)
             <div class="input-checkbox">
-                <a href="/">
-                    <input type="checkbox" id="brand-1">
-                    <label for="brand-1">
+                <a href="{{ request()->fullUrlWithQuery(['s' => $supplier->id]) }}" class="js-reload">
+                    <input type="checkbox" id="brand-{{ $supplier->id }}">
+                    <label for="brand-{{ $supplier->id }}">
                         <span></span>
                         {{ $supplier->s_name }}
                         {{--<small>(578)</small>--}}
