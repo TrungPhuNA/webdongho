@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Auth'],function(){
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('search','SearchController@index')->name("get.search");
 Route::get('danh-muc/{slug}-{id}','CategoryController@getListProduct')->name('get.list.product');
 Route::get('san-pham','CategoryController@getListProduct')->name('get.product.list');
 Route::get('san-pham/{slug}-{id}','ProductDetailController@productDetail')->name('get.detail.product');

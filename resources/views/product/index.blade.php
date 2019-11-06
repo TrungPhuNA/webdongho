@@ -1,24 +1,6 @@
 @extends('layouts.master')
-@section('title_page',$cateProduct->c_name)
+@section('title_page',$cateProduct->c_name ?? "Tìm Kiếm")
 @section('content')
-    <!-- BREADCRUMB -->
-    <div id="breadcrumb" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb-tree">
-                        <li><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Sản phẩm</a></li>
-                        <li class="active">{{ $cateProduct->c_name }}</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
     <div class="section">
         <!-- container -->
         <div class="container">

@@ -60,12 +60,14 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
-                            <select class="input-select" name="cate">
+                        <form action="{{ route('get.search') }}" method="GET" style="display: flex">
+                            <select class="input-select" name="c">
                                 <option value="0">All Categories</option>
-
+                                @foreach($categoriesAll as $cate)
+                                    <option value="{{ $cate->id }}" {{ Request::get('cate') == $cate->id ? "selected='selected'" : "" }}>{{ $cate->c_name }}</option>
+                                @endforeach
                             </select>
-                            <input class="input" placeholder="Nhập từ khoá tìm kiếm">
+                            <input class="input" placeholder="Nhập từ khoá tìm kiếm" name="k" value="{{ Request::get('k') }}">
                             <button class="search-btn">Tìm kiếm</button>
                         </form>
                     </div>
@@ -117,7 +119,7 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="/">Trang chủ</a></li>
+                <li class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }}"><a href="/">Trang chủ</a></li>
                 <li>
                     <a href="#">Sản phẩm</a>
                     <ul>
@@ -153,8 +155,8 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{ route('get.about_us') }}" title="Về chúng tôi">Giới thiệu</a></li>
-                <li><a href="{{ route('get.contact') }}" title="Liên hệ">Liên hệ</a></li>
+                <li class="{{ Route::currentRouteName() == 'get.about_us' ? 'active' : '' }}"><a href="{{ route('get.about_us') }}" title="Về chúng tôi">Giới thiệu</a></li>
+                <li class="{{ Route::currentRouteName() == 'get.contact' ? 'active' : '' }}"><a href="{{ route('get.contact') }}" title="Liên hệ">Liên hệ</a></li>
             </ul>
             <!-- /NAV -->
         </div>

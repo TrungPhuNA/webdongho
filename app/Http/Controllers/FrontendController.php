@@ -25,5 +25,9 @@ class FrontendController extends Controller
 
 		$menus = Menu::all();
         View::share('menus', $menus);
+
+        $categoriesAll = Category::where('c_active',Category::STATUS_PUBLIC)
+                ->get();
+        View::share('categoriesAll', $categoriesAll);
 	}
 }
