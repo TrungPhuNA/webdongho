@@ -29,10 +29,16 @@
                                 {{ $category->c_name }}
                             </td>
                             <td>
-                                <a href="{{ route('admin.get.action.category',['home',$category->id]) }}">{{ $category->getHome($category->c_home)['name'] }}</a>
+                                <a href="{{ route('admin.get.action.category',['home',$category->id]) }}"
+                                class="label {{ $category->getHome($category->c_home)['class'] }}">
+                                    {{ $category->getHome($category->c_home)['name'] }}
+                                </a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.get.action.category',['active',$category->id]) }}">{{ $category->getStatus($category->c_active)['name'] }}</a>
+                                <a href="{{ route('admin.get.action.category',['active',$category->id]) }}"
+                                class="label {{ $category->getStatus($category->c_active)['class'] }}">
+                                    {{ $category->getStatus($category->c_active)['name'] }}
+                                </a>
                             </td>
                             <td>
                                 <a href="{{ route('admin.get.edit.category',$category->id) }}">Edit</a>

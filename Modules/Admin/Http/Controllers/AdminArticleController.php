@@ -4,6 +4,7 @@ namespace Modules\Admin\Http\Controllers;
 
 use App\Http\Requests\RequestArticle;
 use App\Models\Article;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -26,7 +27,8 @@ class AdminArticleController extends Controller
 	
 	public function create()
 	{
-		return view('admin::article.create');
+	    $menus = Menu::all();
+		return view('admin::article.create', compact('menus'));
 	}
 	
 	public function store(RequestArticle $requestArticle)
@@ -38,7 +40,8 @@ class AdminArticleController extends Controller
 	public function edit($id)
 	{
 	    $article = Article::find($id);
-		return view('admin::article.create',compact('article'));
+        $menus = Menu::all();
+		return view('admin::article.create',compact('article','menus'));
 	}
 	
 	public function update(RequestArticle $requestArticle,$id)
@@ -52,11 +55,13 @@ class AdminArticleController extends Controller
 		 $article = new Article();
 		 
 		 if ($id) $article = Article::find($id);
-		
+		 
 		$article->a_name            = $requestArticle->a_name;
 		$article->a_slug            = str_slug($requestArticle->a_name);
 		$article->a_description     = $requestArticle->a_description;
 		$article->a_content         = $requestArticle->a_content;
+		$article->a_category_id     = $requestArticle->a_category_id;
+		$article->a_author_id     = get_data_user('admins');
 		$article->a_title_seo       = $requestArticle->a_title_seo ? $requestArticle->a_title_seo : $requestArticle->a_name;
 		$article->a_description_seo = $requestArticle->a_description_seo ? $requestArticle->a_description_seo : $requestArticle->a_description;
 		

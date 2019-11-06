@@ -42,6 +42,7 @@ Route::get('san-pham/{slug}-{id}','ProductDetailController@productDetail')->name
 
 // bai viet
 Route::get('bai-viet','ArticleController@getListArticle')->name('get.list.article');
+Route::get('bai-viet/p-{slug}','ArticleController@getListArticleByMenu')->name('get.list.article.menu');
 Route::get('bai-viet/{slug}-{id}','ArticleController@getDetailArticle')->name('get.detail.article');
 
 Route::prefix('shopping')->group(function () {
@@ -91,4 +92,4 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
 	Route::get('/san-pham-ban-chay','UserController@getProductPay')->name('user.list.product');
 });
 
-include 'route_test.blade.php';
+include 'route_test.php';

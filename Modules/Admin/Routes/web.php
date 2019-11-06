@@ -51,7 +51,19 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.get.delete_image.product');
 		Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
 	});
-	
+
+	// menu bai viet
+
+    Route::group(['prefix' => 'menu'], function(){
+        Route::get('/','AdminMenuController@index')->name('admin.get.list.menu');
+        Route::get('/create','AdminMenuController@create')->name('admin.get.create.menu');
+        Route::post('/create','AdminMenuController@store');
+        Route::get('/update/{id}','AdminMenuController@edit')->name('admin.get.edit.menu');
+        Route::post('/update/{id}','AdminMenuController@update');
+
+        Route::get('delete/{id}','AdminMenuController@delete')->name('admin.get.delete.menu');
+    });
+
 	// bai viet
 	Route::group(['prefix' => 'article'], function(){
 		Route::get('/','AdminArticleController@index')->name('admin.get.list.article');

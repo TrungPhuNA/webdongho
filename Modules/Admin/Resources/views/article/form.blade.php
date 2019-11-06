@@ -11,6 +11,14 @@
                     </span>
                 @endif
             </div>
+            <div class="form-group">
+                <label for="pro_name">Menu:</label>
+                <select name="a_category_id" class="form-control" id="">
+                    @foreach($menus as $menu)
+                        <option value="{{ $menu->id }}" {{ isset($article->a_category_id) && $article->a_category_id == $menu->id ? "selected='selected'" : "" }}>{{ $menu->m_name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="name">Mô tả:</label>

@@ -1,36 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
-    <style>
-        .main-contact-area { margin-top: 20px}
-    </style>
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="container-inner">
-                        <ul>
-                            <li class="home">
-                                <a href="">Home</a>
-                                <span><i class="fa fa-angle-right"></i></span>
-                            </li>
-                            <li class="category3"><span>Bài viết</span></li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <h1 style="margin-top: 15px;font-size: 20px">Danh sách bài viết</h1>
+                @include('components.article')
             </div>
-        </div>
-    </div>
-    <div class="main-contact-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9">
-                    @include('components.article')
-                </div>
-                <div class="col-sm-3">
-                    <h5>Bài viết nổi bật</h5>
-                    <div class="list_article_hot">
-                        @include('components.article_hot')
-                    </div>
+            <div class="col-sm-3">
+                <h4 style="margin-top: 15px">Bài viết nổi bật</h4>
+                <div class="list_article_hot">
+                    @include('components.article_hot')
                 </div>
             </div>
         </div>

@@ -145,7 +145,14 @@
                         @endif
                     </ul>
                 </li>
-                <li><a href="#">Bài viết</a></li>
+                <li>
+                    <a href="{{ route('get.list.article') }}">Bài viết</a>
+                    <ul>
+                        @foreach($menus as $menu)
+                        <li><a href="{{ route('get.list.article.menu',$menu->m_slug) }}">{{ $menu->m_name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li><a href="{{ route('get.about_us') }}" title="Về chúng tôi">Giới thiệu</a></li>
                 <li><a href="{{ route('get.contact') }}" title="Liên hệ">Liên hệ</a></li>
             </ul>

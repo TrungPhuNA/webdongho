@@ -28,7 +28,7 @@ class Category extends Model
 	protected $home = [
 		1 => [
 			'name' => 'Public',
-			'class' => 'label-primary'
+			'class' => 'label-success'
 		],
 		0 => [
 			'name' => 'Private',
