@@ -86,32 +86,18 @@
                             <span class="product-available">{{ $productDetail->supplier->s_name ?? "[N\A]" }}</span>
                         </div>
                         <p>{{ $productDetail->pro_description }}</p>
-                        {{--<div class="product-options">--}}
-                            {{--<label>--}}
-                                {{--Size--}}
-                                {{--<select class="input-select">--}}
-                                    {{--<option value="0">X</option>--}}
-                                {{--</select>--}}
-                            {{--</label>--}}
-                            {{--<label>--}}
-                                {{--Color--}}
-                                {{--<select class="input-select">--}}
-                                    {{--<option value="0">Red</option>--}}
-                                {{--</select>--}}
-                            {{--</label>--}}
-                        {{--</div>--}}
                         <div class="add-to-cart">
-                            <div class="qty-label">
-                                Qty
-                                <div class="input-number">
-                                    <input type="number">
-                                    <span class="qty-up">+</span>
-                                    <span class="qty-down">-</span>
+                            <form action="{{ route('add.shopping.cart', $productDetail->id) }}" method="GET">
+                                <div class="qty-label">
+                                    Qty
+                                    <div class="input-number">
+                                        <input type="number" value="1" name="qty">
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</button>
+                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</button>
+                            </form>
                         </div>
-                        
+
                         <ul class="product-links">
                             <li>Chia sẻ:</li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>

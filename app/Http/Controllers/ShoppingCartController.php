@@ -14,7 +14,7 @@ class ShoppingCartController extends FrontendController
 	private  $vnp_HashSecret = "HNRLKDFZEJJWKUEHUOSYSMWWESNGDPZE"; //Chuỗi bí mật
 	private  $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 	private  $vnp_Returnurl = "http://laravel56.abc/gio-hang/thanh-toan-pay";
-	
+
 	/**
 	 * @param Request $request
 	 * @param $id
@@ -23,24 +23,26 @@ class ShoppingCartController extends FrontendController
     public function addProduct(Request $request,$id)
 	{
 	    $product = Product::select('pro_name','id','pro_price','pro_sale','pro_avatar','pro_number')->find($id);
-	    
+
 	    if (!$product) return redirect('/');
-		
+
 	    $price = $product->pro_price;
 	    if ($product->pro_sale)
 		{
 			$price =  $price * (100 - $product->pro_sale)/ 100;
 		}
-		
+
 		if ($product->pro_number == 0 )
 		{
 			return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
 		}
-		
+
+		$qty = $request->qty ? $request->qty :  1;
+
 		\Cart::instance('cart')->add([
 			'id'      => $id,
 			'name'    => $product->pro_name,
-			'qty'     => 1,
+			'qty'     => $qty,
 			'price'   => $price,
 			'options' => [
 				'avatar' => $product->pro_avatar,
@@ -48,17 +50,17 @@ class ShoppingCartController extends FrontendController
 				'price_old' => $product->pro_price
 			],
 		]);
-		
+
 		return redirect()->back()->with('success','Mua hàng thành công');
 	}
-	
+
 	public function deleteProductItem($key)
 	{
 		\Cart::instance('cart')->remove($key);
-		
+
 		return redirect()->back();
 	}
-	
+
 	/**
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 * Danh sách giỏ hàng
@@ -68,7 +70,7 @@ class ShoppingCartController extends FrontendController
 		$products = \Cart::instance('cart')->content();
 		return view('shopping.index',compact('products'));
 	}
-	
+
 	/**
 	 * Form thanh toan
 	 */
@@ -77,7 +79,7 @@ class ShoppingCartController extends FrontendController
 		$products = \Cart::instance('cart')->content();
 		return view('shopping.pay',compact('products'));
 	}
-	
+
 	/**
 	 * Lưu thông tin giỏ hàng
 	 */
@@ -109,12 +111,12 @@ class ShoppingCartController extends FrontendController
 				]);
 			}
 		}
-		
+
 		\Cart::instance('cart')->destroy();
-		
+
 		return redirect()->route('get.invoice',$transactionId);
 	}
-	
+
 	/**
 	 * Cập nhật số lượng giỏ hàng
 	 */
@@ -123,33 +125,33 @@ class ShoppingCartController extends FrontendController
 		\Cart::instance('cart')->update($id, ['qty' => $request->qty]);
 		return redirect()->back()->with('success','Cập nhật thành công');
 	}
-	
+
 	public function showFormPay(Request $request)
 	{
 		if ($request->vnp_ResponseCode == '00')
 		{
 		      $transactionID = $request->vnp_TxnRef;
-		      
+
 		      $transaction = Transaction::find($transactionID);
 		      if ($transaction)
 			  {
 				  \Cart::instance('cart')->destroy();
 				  $transaction->tr_type = Transaction::TYPE_PAY;
 				  $transaction->save();
-				  
+
 				  return redirect()->route('get.invoice',$transaction->id);
-				  
+
 //				  return redirect()->to('/')->with('success','Xác nhận giao dịch thành công');
 			  }
-			  
+
 			return redirect()->to('/')->with('danger','Mã đơn hàng không tồn tại');
-			
+
 		}
-		
+
 		$products = \Cart::instance('cart')->content();
 		return view('shopping.pay_online',compact('products'));
 	}
-	
+
 	/**
 	 * @param Request $request
 	 * Lưu online
@@ -166,7 +168,7 @@ class ShoppingCartController extends FrontendController
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now()
 		]);
-		
+
 		if ($transactionId)
 		{
 			$products = \Cart::content();
@@ -181,10 +183,10 @@ class ShoppingCartController extends FrontendController
 				]);
 			}
 		}
-		
+
 		// Sau khi xử lý xong bắt đầu xử lý online
 		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-		
+
 		// tham so dau vao
 		$inputData = array(
 			"vnp_Version"    => "2.0.0",
@@ -200,7 +202,7 @@ class ShoppingCartController extends FrontendController
 			"vnp_ReturnUrl"  => $this->vnp_Returnurl,   // duong dan tra ve
 			"vnp_TxnRef"     => $transactionId , // ma don hang,
 		);
-		
+
 		if ($request->bank_code) {
 			$inputData['vnp_BankCode'] = $request->bank_code;
 		}
@@ -217,32 +219,32 @@ class ShoppingCartController extends FrontendController
 			}
 			$query .= urlencode($key) . "=" . urlencode($value) . '&';
 		}
-		
-		
+
+
 		$vnp_Url = $this->vnp_Url . "?" . $query;
 		if ($this->vnp_HashSecret) {
 			$vnpSecureHash = hash('sha256', $this->vnp_HashSecret . $hashdata);
 			$vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
 		}
-		
+
 		$returnData = array(
 			'code' => '00',
 			'message' => 'success',
 			'data' => $vnp_Url
 		);
-		
+
 		return redirect()->to($returnData['data']) ;
 	}
-	
+
 	public function getInvoice($id)
 	{
 		$transaction = Transaction::find($id);
 		$orders = Order::with('product')
 			->where('or_transaction_id',$id)->get();
-		
+
 		return view('shopping.invoice',compact('transaction','orders'));
 	}
-	
+
 }
 
 

@@ -18,17 +18,17 @@ Route::get('dieu-khoan-su-dung','PageStaticController@dieukhoansudung')->name('g
 Route::group(['namespace' => 'Auth'],function(){
 	Route::get('dang-ky','RegisterController@getRegister')->name('get.register');
 	Route::post('dang-ky','RegisterController@postRegister')->name('post.register');
-	
+
 	Route::get('xac-nhan-tai-khoan','RegisterController@verifyAccount')->name('user.verify.account');
-	
+
 	Route::get('dang-nhap','LoginController@getLogin')->name('get.login');
 	Route::post('dang-nhap','LoginController@postLogin')->name('post.login');
-	
+
 	Route::get('dang-xuat','LoginController@getLogout')->name('get.logout.user');
-	
+
 	Route::get('/lay-lai-mat-khau','ForgotPasswordController@getFormResetPassword')->name('get.reset.password');
 	Route::post('/lay-lai-mat-khau','ForgotPasswordController@sendCodeResetPassword');
-	
+
 	Route::get('/password/reset','ForgotPasswordController@resetPassword')->name('get.link.reset.password');
 	Route::post('/password/reset','ForgotPasswordController@saveResetPassword');
 });
@@ -56,7 +56,7 @@ Route::prefix('shopping')->group(function () {
 Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function(){
 	Route::get('/thanh-toan','ShoppingCartController@getFormPay')->name('get.form.pay');
 	Route::post('/thanh-toan','ShoppingCartController@saveInfoShoppingCart');
-	
+
 	// thanh toan online
 	Route::get('/thanh-toan-pay','ShoppingCartController@showFormPay')->name('get.form.pay_online');
 	Route::post('/thanh-toan-pay','ShoppingCartController@savePayOnline');
@@ -71,10 +71,6 @@ Route::group(['prefix' => 'ajax'],function(){
 	Route::post('/view-product','HomeController@renderProductView')->name('post.product.view');
 });
 
-Route::group(['prefix' => 'api-sheets'],function(){
-	Route::get('/sheets','ApiGoogleSheetController@index');
-});
-
 
 Route::get('ve-chung-toi','PageStaticController@aboutUs')->name('get.about_us');
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
@@ -82,13 +78,13 @@ Route::post('lien-he','ContactController@saveContact');
 
 Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
 	Route::get('/','UserController@index')->name('user.dashboard');
-	
+
 	Route::get('/info','UserController@updateInfo')->name('user.update.info');
 	Route::post('/info','UserController@saveUpdateInfo');
-	
+
 	Route::get('/password','UserController@updatePassword')->name('user.update.password');
 	Route::post('/password','UserController@saveUpdatePassword');
-	
+
 	Route::get('/san-pham-yeu-thich','UserController@getProductWishlist')->name('user.list.product_wishlist');
 	Route::get('/san-pham-ban-chay','UserController@getProductPay')->name('user.list.product');
 });
