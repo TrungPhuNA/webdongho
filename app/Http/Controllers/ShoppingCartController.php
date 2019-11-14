@@ -57,7 +57,6 @@ class ShoppingCartController extends FrontendController
 	public function deleteProductItem($key)
 	{
 		\Cart::instance('cart')->remove($key);
-
 		return redirect()->back();
 	}
 

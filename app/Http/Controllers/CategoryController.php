@@ -104,7 +104,7 @@ class CategoryController extends FrontendController
             }
         }
 
-        $products = $products->paginate(3);
+        $products = $products->paginate(9);
 
         $viewData = [
             'products'         => $products,

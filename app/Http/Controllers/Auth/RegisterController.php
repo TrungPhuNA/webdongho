@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\FrontendController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
 
-class RegisterController extends Controller
+class RegisterController extends FrontendController
 {
     /*
     |--------------------------------------------------------------------------
@@ -20,12 +21,16 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
    	public function getRegister()
 	{
 		return view('auth.register');
 	}
-	
+
 	public function postRegister(Request $request)
 	{
 		$user = new User();
@@ -34,7 +39,7 @@ class RegisterController extends Controller
 		$user->phone = $request->phone;
 		$user->password = bcrypt($request->password);
 		$user->save();
-		
+
 		if ($user->id)
 		{
 			// $email = $user->email;
@@ -62,7 +67,7 @@ class RegisterController extends Controller
 
         return redirect()->route('get.login');
 	}
-	
+
 	/**
 	 * Xác nhận tài khoản
 	 */
@@ -70,17 +75,17 @@ class RegisterController extends Controller
 	{
 		$code = $request->code;
 		$id = $request->id;
-		
+
 		$checkUser = User::where([
 			'code_active' => $code,
 			'id' => $id
 		])->first();
-		
+
 		if (!$checkUser)
 		{
 			return redirect('/')->with('danger','Xin lỗi ! Đường dẫn xác nhận tài khoản không tồn tại , bạn vui lòng thử lại sau.');
 		}
-		
+
 		$checkUser->active = 2;
 		$checkUser->save();
 		return redirect('/')->with('success','Xác nhận tài khoản thành công');

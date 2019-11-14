@@ -1,3 +1,28 @@
+<style>
+    .checkbox-filter {
+        max-height: 200px;
+        height: 200px;
+        overflow-y: auto;
+    }
+    .checkbox-filter::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    .checkbox-filter::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    .checkbox-filter::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    .checkbox-filter::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+</style>
 @if ($categoryChildren && $categoryChildren->count())
 <div class="aside">
     <h3 class="aside-title">Danh mục liên quan</h3>
@@ -5,7 +30,7 @@
         @foreach($categoryChildren as $cate)
             <div class="input-checkbox">
                 <a href="{{ route('get.list.product', [$cate->c_slug, $cate->id]) }}" class="js-reload">
-                    <input type="checkbox" id="category-{{ $cate->id }}">
+                    <input type="checkbox" {{ Request::segments('2') == $cate->c_slig.'-'.$cate->id ? "checked" : "" }} id="category-{{ $cate->id }}">
                     <label for="category-{{ $cate->id }}">
                         <span></span>{{ $cate->c_name }}<small></small>
                     </label>
@@ -20,11 +45,11 @@
 @if ($suppliers && $suppliers->count())
 <div class="aside">
     <h3 class="aside-title">Nhà cung cấp</h3>
-    <div class="checkbox-filter">
+    <div class="checkbox-filter" style="">
         @foreach($suppliers as $supplier)
             <div class="input-checkbox">
                 <a href="{{ request()->fullUrlWithQuery(['s' => $supplier->id]) }}" class="js-reload">
-                    <input type="checkbox" id="brand-{{ $supplier->id }}">
+                    <input type="checkbox" {{ Request::get('s') == $supplier->id ? "checked" : "" }} id="brand-{{ $supplier->id }}">
                     <label for="brand-{{ $supplier->id }}">
                         <span></span>
                         {{ $supplier->s_name }}

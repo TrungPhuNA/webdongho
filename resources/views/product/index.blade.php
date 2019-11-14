@@ -16,34 +16,12 @@
 
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
-                    <!-- store top filter -->
-                    <div class="store-filter clearfix">
-                        <div class="store-sort">
-                            <label>
-                                Sort By:
-                                <select class="input-select">
-                                    <option value="0">Popular</option>
-                                    <option value="1">Position</option>
-                                </select>
-                            </label>
-
-                            <label>
-                                Show:
-                                <select class="input-select">
-                                    <option value="0">20</option>
-                                    <option value="1">50</option>
-                                </select>
-                            </label>
-                        </div>
-                        <ul class="store-grid">
-                            <li class="active"><i class="fa fa-th"></i></li>
-                            <li><a href="#"><i class="fa fa-th-list"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /store top filter -->
 
                     <!-- store products -->
                     <div class="row">
+                        @if (isset($cateProduct))
+                            <h1 style="font-size: 20px;margin-top: 10px">{{ $cateProduct->c_name }}</h1>
+                        @endif
                         @foreach($products as $product)
                             <div class="col-md-4 col-xs-6">
                                 @include('components.product_item_v1',['product' => $product])

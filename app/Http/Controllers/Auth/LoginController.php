@@ -22,22 +22,27 @@ class LoginController extends FrontendController
 
     use AuthenticatesUsers;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function getLogin()
 	{
 		return view('auth.login');
 	}
-	
+
 	public function postLogin(Request $request)
 	{
 		$credentials = $request->only('email', 'password');
-		
+
 		if (\Auth::attempt($credentials)) {
 			return redirect()->route('home');
 		}
-		
+
 		return redirect()->back()->with('danger','Đăng nhập thất bại');
 	}
-	
+
 	public function getLogout()
 	{
 		\Auth::logout();

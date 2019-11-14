@@ -10,10 +10,10 @@
     </div>
     <div class="product-body">
         <p class="product-category">{{ $product->category->c_name }}</p>
-        <h3 class="product-name">
+        <h3 class="product-name" style="min-height: 40px">
             <a href="{{ route('get.detail.product',[$product->pro_slug, $product->id]) }}">{{ $product->pro_name }}</a>
         </h3>
-        <h4 class="product-price">
+        <h4 class="product-price" style="font-size: 14px;">
             @if ($product->pro_sale)
                 {{ number_format($product->pro_price * (100 - $product->pro_sale) / 100,0,',','.') }} VNĐ
                 <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ</h4>
