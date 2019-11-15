@@ -216,7 +216,7 @@
                         <h3 class="footer-title">Tài khoản của bạn</h3>
                         <ul class="footer-links">
                             <li><a href="{{ route('user.update.info') }}">Thông tin tài khoản</a></li>
-                            <li><a href="#">Lịch sử giao dịch</a></li>
+                            <li><a href="{{ route('get.transaction.history') }}">Lịch sử giao dịch</a></li>
                             <li><a href="{{ route('user.list.product_wishlist') }}">Sản phẩm yêu thích</a></li>
                         </ul>
                     </div>
