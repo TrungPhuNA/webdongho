@@ -15,37 +15,37 @@ class AdminProductController extends Controller
     public function index(Request $request)
 	{
 		$products = Product::with('category:id,c_name');
-		
+
 		if ($request->name)  $products->where('pro_name','like','%'.$request->name.'%');
 		if ($request->cate)  $products->where('pro_category_id',$request->cate) ;
-		
+
 		$products = $products->orderByDesc('id')->paginate(10);
-		
+
 		$categories = $this->getCategories();
-		
+
 		$viewData = [
 			'products'   => $products,
 			'categories' => $categories
 		];
-		
+
 		return view('admin::product.index',$viewData);
 	}
-	
+
 	public function create()
 	{
 		$categories = $this->getCategories();
 		$suppliers  = $this->getSupplier();
-		
+
 		return view('admin::product.create',compact('categories','suppliers'));
 	}
-	
+
 	public function store(RequestProduct $requestProduct)
 	{
 	     $this->insertOrUpdate($requestProduct);
-	     
+
 	     return redirect()->back()->with('success','Thêm mới thành công');
 	}
-	
+
 	public function edit($id)
 	{
 		$product    = Product::find($id);
@@ -55,14 +55,14 @@ class AdminProductController extends Controller
 
 		return view('admin::product.update',compact('product','categories','suppliers','images'));
 	}
-	
+
 	public function update(RequestProduct $requestProduct,$id)
 	{
 		$this->insertOrUpdate($requestProduct,$id);
-		
+
 		return redirect()->back()->with('success','Cập nhật thành công ');
 	}
-	
+
 	public function getCategories()
 	{
 		return Category::all();
@@ -72,11 +72,11 @@ class AdminProductController extends Controller
     {
         return Supplier::select('id','s_name')->orderByDesc('id')->get();
     }
-	
+
 	public function insertOrUpdate($requestProduct,$id='')
 	{
 		$product = new Product();
-		
+
 		if ($id) $product = Product::find($id);
 
         $product->pro_name            = $requestProduct->pro_name;
@@ -92,19 +92,19 @@ class AdminProductController extends Controller
         $product->s_supplier_id       = $requestProduct->s_supplier_id;
         $product->pro_author_id       = get_data_user('admins');
 
-        if ($product->pro_warranty) {
+        if ($requestProduct->pro_warranty) {
 		    $product->pro_warranty = $requestProduct->pro_warranty;
         }
 		if ( $requestProduct->hasFile('avatar'))
 		{
 			$file = upload_image('avatar');
-			
+
 			if (isset($file['name']))
 			{
 				$product->pro_avatar = $file['name'];
 			}
 		}
-		
+
 		$product->save();
 
 		if ($product->id && $requestProduct->hasFile('album')) {
@@ -126,7 +126,7 @@ class AdminProductController extends Controller
             }
 
             $filename = date('Y-m-d__').str_slug($fileImage->getClientOriginalName()).'.'.$ext;
-            
+
             $path = public_path().'/uploads/'.date('Y/m/d/');
             if ( !\File::exists($path))
             {
@@ -142,7 +142,7 @@ class AdminProductController extends Controller
             $productImage->save();
         }
     }
-	
+
 	public function delete($id)
 	{
 		\DB::table('products')->where('id',$id)->delete();
@@ -154,7 +154,7 @@ class AdminProductController extends Controller
         ProductImage::where('id', $id)->delete();
         return redirect()->back()->with('success','Xoá thành công');
     }
-	
+
 	public function action($action,$id)
 	{
 		if ($action)
@@ -165,19 +165,19 @@ class AdminProductController extends Controller
 				case 'delete':
 					$product->delete();
 					break;
-				
+
 				case 'active':
 					$product->pro_active =  $product->pro_active ? 0 : 1;
 					break;
-				
+
 				case 'hot':
 					$product->pro_hot =  $product->pro_hot ? 0 : 1 ;
 					break;
 			}
-			
+
 			$product->save();
 		}
-		
+
 		return redirect()->back();
 	}
 }
