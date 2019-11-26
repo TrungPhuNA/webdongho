@@ -93,7 +93,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Time bảo hành:</label>
-                <input type="date" placeholder="Thời gian bảo hành" class="form-control"
+                <input type="number" placeholder="Thời gian bảo hành" class="form-control"
                        name="pro_warranty" value="{{ old('pro_warranty',isset($product->pro_warranty) ? $product->pro_warranty  : '0') }}">
             </div>
             <div class="form-group">
@@ -109,7 +109,7 @@
             <div class="form-group">
                 <img  id="out_img" src="{{ asset('images/no_image.jpg') }}" alt="" style="width: 100%;height: 300px">
             </div>
-            
+
             <div class="form-group">
                 <label for="name">Avatar:</label>
                 <input type="file" id="input_img"  name="avatar" class="form-control">

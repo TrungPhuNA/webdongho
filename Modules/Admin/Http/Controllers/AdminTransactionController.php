@@ -19,53 +19,53 @@ class AdminTransactionController extends Controller
     public function index(Request $request)
     {
     	$transactions = Transaction::with('user:id,name');
-    	
+
     	$transactionsTotal = Transaction::whereRaw(1);
-    	
+
     	if ($request->dates)
 		{
 			$date = $this->getStartEndTime($request->dates);
 			$transactionsTotal->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
 			$transactions->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
 		}
-		
+
 		if ($request->status)
 		{
 			$status = $request->status == 2 ? 0 : 1;
 			$transactionsTotal->where('tr_status',$status);
 			$transactions->where('tr_status',$status);
 		}
-		
+
 		$transactionsTotal = $transactionsTotal->sum('tr_total');
     	$transactions = $transactions->orderByDesc('id')->paginate(10);
-    	
+
     	$viewData = [
     		'transactions' => $transactions,
 			'transactionsTotal' => $transactionsTotal,
 			'query' => $request->query()
 		];
-    	
+
         return view('admin::transaction.index',$viewData);
     }
-    
+
     public function viewOrder(Request $request,$id)
 	{
-		 if ($request->ajax())
-		 {
-		 	$orders = Order::with('product')
+//		 if ($request->ajax())
+//		 {
+		 	$orders = Order::with('product:id,pro_name,pro_avatar,pro_warranty')
 				->where('or_transaction_id',$id)->get();
-		 	
+
 		 	$html = view('admin::components.order',compact('orders'))->render();
 		 	return \response()->json($html);
-		 }
+//		 }
 	}
-	
+
 	public function delete($id)
 	{
 		\DB::table('transactions')->where('id',$id)->delete();
 		return redirect()->back();
 	}
-	
+
 	/**
 	 * Xử lý trạng thái đơn hàng
 	 */
@@ -73,7 +73,7 @@ class AdminTransactionController extends Controller
 	{
 		$transaction = Transaction::find($id);
 		$orders = Order::where('or_transaction_id',$id)->get();
-		
+
 		if ($orders)
 		{
 			//tru di so luong cua san pham
@@ -86,21 +86,21 @@ class AdminTransactionController extends Controller
 				$product->save();
 			}
 		}
-		
+
 		// update user
 		\DB::table('users')->where('id',$transaction->tr_user_id)
 			->increment('total_pay');
-		
+
 		$transaction->tr_status = Transaction::STATUS_DONE;
 		$transaction->save();
-		
+
 		return redirect()->back()->with('success','Xử lý đơn hàng thành công');
 	}
-	
+
 	public function getStartEndTime($date_range, $config=[])
 	{
 		$dates = explode(' - ', $date_range);
-		
+
 		if (array_get($config, 'his'))
 		{
 			$start_date = date('Y-m-d H:i:s', strtotime($dates[0]));

@@ -23,15 +23,19 @@
                 <td>{{ number_format($order->or_price,0,',','.') }}đ x {{ $order->or_qty }}</td>
                 <td>
                     @php
-                        $date = date_create($order->product->pro_warranty);
-                        $day_1 = date_format($date, 'Y-m-d');
-                        $day_2 = date('Y-m-d') ; //current date
-                        $days = (strtotime($day_1) - strtotime($day_2)) / (60 * 60 * 24);
+                        $dateAfter = $order->created_at->addDays($order->product->pro_warranty);
                     @endphp
-                    @if ($days <= 0 )
-                        <span class="label-danger label">Hết bảo hành</span>
+
+                    @php
+                        $difference = strtotime($dateAfter) - strtotime(Carbon\Carbon::now());
+                        $difference_in_minutes = $difference / 60;
+                    @endphp
+
+                    @if ($difference_in_minutes > 0 )
+
+                        <span class="label-info label">Bảo hành đến : {{ $dateAfter }}</span><br>
                     @else
-                        <span class="label-info label">{{ $order->product->pro_warranty }}</span>
+                        <span class="label-danger label"> Hết hạn</span><br>
                     @endif
                 </td>
                 <td>{{ number_format($order->or_price * $order->or_qty,0,',','.') }} đ</td>
