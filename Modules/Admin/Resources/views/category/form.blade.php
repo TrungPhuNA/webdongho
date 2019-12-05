@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Tên danh mục:</label>
@@ -14,7 +14,7 @@
         <select name="c_parent_id" id="" class="form-control">
             <option value="0">__ROOT__</option>
             @foreach($categoriesSort as $cate)
-                <option value="{{ $cate->id }}" {{  isset($category->c_parent_id) == $cate->id ? "selected='selected'" : "" }}>
+                <option value="{{ $cate->id }}" {{  isset($category->c_parent_id) && $category->c_parent_id == $cate->id ? "selected='selected'" : "" }}>
                     <?php $str = ''; for($i = 0; $i < $cate->level; $i ++){ echo $str; $str .= '-- '; }?>
                     {{ $cate->c_name }}
                 </option>
@@ -29,6 +29,13 @@
             <span class="error-text">
                         {{$errors->first('icon')}}
                     </span>
+        @endif
+    </div>
+    <div class="form-group">
+        <label for="name">Banner:</label>
+        <input type="file" id="input_img"  name="avatar" class="form-control">
+        @if (isset($category))
+            <img src="{{ pare_url_file($category->c_avatar) }}" alt="" class="img img-responsive" style="width: 80px;height: 80px;margin: 20px 0">
         @endif
     </div>
     <div class="form-group">

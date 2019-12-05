@@ -19,8 +19,10 @@
 
                     <!-- store products -->
                     <div class="row">
-                        @if (isset($cateProduct))
+                        @if (isset($cateProduct) && !empty($cateProduct))
                             <h1 style="font-size: 20px;margin-top: 10px">{{ $cateProduct->c_name }}</h1>
+
+                            <img src="{{ pare_url_file($cateProduct->c_avatar) }}" alt="" class="img img-responsive" style="width: 100%;height: auto;max-height: 400px">
                         @endif
                         @foreach($products as $product)
                             <div class="col-md-4 col-xs-6">

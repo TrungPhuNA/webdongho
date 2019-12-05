@@ -15,6 +15,7 @@
                     <th>#</th>
                     <th>Tên danh mục</th>
                     <th>Trang chủ</th>
+                    <th>Banner</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
@@ -33,6 +34,9 @@
                                 class="label {{ $category->getHome($category->c_home)['class'] }}">
                                     {{ $category->getHome($category->c_home)['name'] }}
                                 </a>
+                            </td>
+                            <td>
+                                <img src="{{ pare_url_file($category->c_avatar) }}" alt="" class="img img-responsive" style="width: 80px;height: 80px;">
                             </td>
                             <td>
                                 <a href="{{ route('admin.get.action.category',['active',$category->id]) }}"

@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="product-body">
-        <p class="product-category">{{ $product->category->c_name }}</p>
+        <p class="product-category">{{ $product->category->c_name ?? "[N\A]" }}</p>
         <h3 class="product-name" style="min-height: 40px">
             <a href="{{ route('get.detail.product',[$product->pro_slug, $product->id]) }}">{{ $product->pro_name }}</a>
         </h3>

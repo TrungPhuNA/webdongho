@@ -30,7 +30,7 @@
         @foreach($categoryChildren as $cate)
             <div class="input-checkbox">
                 <a href="{{ route('get.list.product', [$cate->c_slug, $cate->id]) }}" class="js-reload">
-                    <input type="checkbox" {{ Request::segments('2') == $cate->c_slig.'-'.$cate->id ? "checked" : "" }} id="category-{{ $cate->id }}">
+                    <input type="checkbox" {{ Request::segments('2') == $cate->c_slug.'-'.$cate->id ? "checked" : "" }} id="category-{{ $cate->id }}">
                     <label for="category-{{ $cate->id }}">
                         <span></span>{{ $cate->c_name }}<small></small>
                     </label>
@@ -65,27 +65,32 @@
 
 @if ($productHot && $productHot->count())
 <!-- aside Widget -->
-<div class="aside">
-    <h3 class="aside-title">Sản phẩm nổi bật</h3>
-    @foreach($productHot as $product)
-    <div class="product-widget">
-        <div class="product-img">
-            <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" style="height: 67px">
+
+    <div class="aside">
+        <h3 class="aside-title">Sản phẩm nổi bật</h3>
+        @foreach($productHot as $product)
+        <div class="product-widget">
+            <div class="product-img">
+                <img src="{{ pare_url_file($product->pro_avatar) }}" alt="" style="height: 67px">
+            </div>
+            <div class="product-body">
+                <p class="product-category">{{ $product->category->c_name ?? "[N\A]" }}</p>
+                <h3 class="product-name">
+                    <a href="{{ route('get.detail.product',[$product->pro_slug, $product->id]) }}">
+                        {{ $product->pro_name }}
+                    </a>
+                </h3>
+                <h4 class="product-price">
+                    @if ($product->pro_sale)
+                        {{ number_format($product->pro_price * (100 - $product->pro_sale) * 100,0,',','.') }} VNĐ
+                        <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ
+                    @else
+                    {{ number_format($product->pro_price,0,',','.') }} VNĐ
+                    @endif
+                </h4>
+            </div>
         </div>
-        <div class="product-body">
-            <p class="product-category">{{ $product->category->c_name }}</p>
-            <h3 class="product-name"><a href="#">{{ $product->pro_name }}</a></h3>
-            <h4 class="product-price">
-                @if ($product->pro_sale)
-                    {{ number_format($product->pro_price * (100 - $product->pro_sale) * 100,0,',','.') }} VNĐ
-                    <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ
-                @else
-                {{ number_format($product->pro_price,0,',','.') }} VNĐ
-                @endif
-            </h4>
-        </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
 @endif
 <!-- /aside Widget -->
