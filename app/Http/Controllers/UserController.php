@@ -77,7 +77,13 @@ class UserController extends FrontendController
 
     public function getProductWishlist()
     {
-        return view('user.product_care');
+        $user_id =  get_data_user('web');
+        $products = Product::whereHas('user',function($query) use($user_id){
+            $query->where('pf_user_id',$user_id);
+        })->orderByDesc('id')
+            ->simplePaginate(10);
+
+        return view('user.favorite', compact('products'));
     }
 
     public function getTransaction()
@@ -91,5 +97,29 @@ class UserController extends FrontendController
         ];
 
         return view('user.transaction_history', $viewData);
+    }
+
+    public function addFavorite($productID)
+    {
+        $favoriteExists = \DB::table('products_favorite')
+            ->where([
+                'pf_product_id' => $productID,
+                'pf_user_id'    => get_data_user('web')
+            ])->first();
+
+        if ($favoriteExists)
+            return redirect()->back()->with('danger', 'Đã thêm vào yêu thích');
+
+        $idFavorite = \DB::table('products_favorite')
+            ->insertGetID([
+                'pf_product_id' => $productID,
+                'pf_user_id'    => get_data_user('web')
+            ]);
+
+        if ($idFavorite) {
+            return redirect()->back()->with('success', 'Thêm vào yêu thích thành công');
+        }
+
+        return redirect()->back()->with('danger', 'Thêm vào yêu thích thất bại');
     }
 }

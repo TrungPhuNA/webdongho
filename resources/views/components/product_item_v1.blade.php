@@ -21,7 +21,9 @@
                 {{ number_format($product->pro_price,0,',','.') }} VNĐ
             @endif
         <div class="product-btns">
-            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào yêu thích</span></button>
+            <a class="add-to-wishlist" href="{{ route('user.favorite.add', $product->id) }}">
+                <i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào yêu thích</span>
+            </a>
             <a href="{{ route('add.shopping.cart', $product->id) }}" title="Thêm giỏ hàng" class="add-to-compare"><i class="fa fa-shopping-cart"></i>
             </a>
             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem</span></button>

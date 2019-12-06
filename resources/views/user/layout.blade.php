@@ -45,7 +45,7 @@
                 </li>
                 <li class="{{ \Request::route()->getName() == 'user.update.info' ? 'active' : '' }}"><a href="{{ route('user.update.info') }}">Cập nhật thông tin</a></li>
                 <li class="{{ \Request::route()->getName() == 'user.update.password' ? 'active' : '' }}"><a href="{{ route('user.update.password') }}">Cập nhật mật khẩu</a></li>
-                <li class="{{ \Request::route()->getName() == 'user.list.product_wishlist' ? 'active' : '' }}"><a href="{{ route('user.list.product_wishlist') }}">Sản phẩm quan tâm</a></li>
+                <li class="{{ \Request::route()->getName() == 'user.list.favorite' ? 'active' : '' }}"><a href="{{ route('user.list.favorite') }}">Sản phẩm quan tâm</a></li>
                 <li class="{{ \Request::route()->getName() == 'user.list.product' ? 'active' : '' }}"><a href="{{ route('user.list.product') }}">Sản phẩm bán chạy</a></li>
 
             </ul>

@@ -81,12 +81,15 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function(){
 
 	Route::get('/info','UserController@updateInfo')->name('user.update.info');
 	Route::post('/info','UserController@saveUpdateInfo');
-
+    Route::group(['prefix' => 'favorite'], function (){
+        Route::get('/add/{id}','UserController@addFavorite')->name('user.favorite.add');
+        Route::get('list','UserController@listFavorite')->name('user.favorite.list');
+    });
 	Route::get('/password','UserController@updatePassword')->name('user.update.password');
 	Route::post('/password','UserController@saveUpdatePassword');
 
 	Route::get('giao-dich','UserController@getTransaction')->name('get.transaction.history');
-	Route::get('/san-pham-yeu-thich','UserController@getProductWishlist')->name('user.list.product_wishlist');
+	Route::get('/san-pham-yeu-thich','UserController@getProductWishlist')->name('user.list.favorite');
 	Route::get('/san-pham-ban-chay','UserController@getProductPay')->name('user.list.product');
 });
 
