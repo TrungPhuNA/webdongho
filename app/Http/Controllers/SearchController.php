@@ -26,7 +26,9 @@ class SearchController extends FrontendController
 
         // Lấy sản phẩm
         $products = Product::where("pro_active", Product::STATUS_PUBLIC);
-        $products->where('pro_category_id', $id);
+        if ($id) {
+            $products->where('pro_category_id', $id);
+        }
 
         if ($request->k) {
             $products->where('pro_name', 'like', '%' . $request->k . '%');
