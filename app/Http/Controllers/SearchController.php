@@ -30,6 +30,10 @@ class SearchController extends FrontendController
             $products->where('pro_category_id', $id);
         }
 
+        if ($s = $request->s) {
+            $products->where('s_supplier_id', $s);
+        }
+
         if ($request->k) {
             $products->where('pro_name', 'like', '%' . $request->k . '%');
         }

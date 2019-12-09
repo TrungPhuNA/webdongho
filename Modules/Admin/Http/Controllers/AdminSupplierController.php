@@ -3,6 +3,7 @@
 namespace Modules\Admin\Http\Controllers;
 
 use App\Http\Requests\RequestSupplier;
+use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
@@ -70,6 +71,7 @@ class AdminSupplierController extends Controller
 
     public function delete($id)
     {
+        Product::where('s_supplier_id', $id)->delete();
         Supplier::findOrFail($id)->delete();
         return redirect()->back()->with(['success' => 'Xoá dữ liệu thành công']);
     }

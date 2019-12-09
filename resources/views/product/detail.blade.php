@@ -345,18 +345,15 @@
                             <h4 class="product-price">
                                 @if ($product->pro_sale)
                                     {{ number_format($product->pro_price * (100 - $product->pro_sale) / 100,0,',','.') }} VNĐ
-                                    <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ</h4>
+                                    <del class="product-old-price">{{ number_format($product->pro_price,0,',','.') }}</del> VNĐ
                                 @else
-                                    {{ number_format($product->pro_price,0,',','.') }} VNĐ
+                                {{ number_format($product->pro_price,0,',','.') }} VNĐ
                                 @endif
+                            </h4>
                             <div class="product-btns">
-                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Thêm vào yêu thích</span></button>
-                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Thêm vào giỏ hàng</span></button>
-                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem</span></button>
+                                <a href="{{ route('user.favorite.add', $product->id) }}" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></a>
+                                <a href="{{ route('add.shopping.cart', $product->id) }}" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Add Cart</span></a>
                             </div>
-                        </div>
-                        <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Mua Nhanh</button>
                         </div>
                     </div>
                 </div>
