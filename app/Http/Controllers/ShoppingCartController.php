@@ -243,7 +243,7 @@ class ShoppingCartController extends FrontendController
 		$orders = Order::with('product')
 			->where('or_transaction_id',$id)->get();
 
-		return view('shopping.invoice',compact('transaction','orders'));
+		return view('shopping.invoice',compact('transaction','orders','id'));
 	}
 
 }

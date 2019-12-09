@@ -181,7 +181,7 @@
         <hr>
     </div>
     <div class="invoice overflow-auto">
-        <div style="min-width: 600px">
+        <div style="max-width: 700px;margin: 0 auto">
             <header>
                 <div class="row">
                     <div class="col">
@@ -196,12 +196,13 @@
                         <div>{{ $transaction->tr_address }}</div>
                         <div>{{ $transaction->tr_phone }}</div>
                         <div>{{ get_data_user('web','email') }}</div>
+                        <div>Mã Đơn Hàng <b>#{{ $id }}</b></div>
                     </div>
                 </div>
             </header>
             <main>
                 <div class="row contacts">
-                    
+
                 </div>
                 <table border="0" cellspacing="0" cellpadding="0">
                     <thead>
@@ -244,7 +245,7 @@
                     </tr>
                     </tfoot>
                 </table>
-                
+
                 <div class="notices">
                     <div>Chú ý:</div>
                     <div class="notice">Đơn hàng đang được xử lý và sẽ giao hàng trong thời gian sớm nhất</div>

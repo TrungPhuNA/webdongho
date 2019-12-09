@@ -11,9 +11,9 @@
     <div class="row">
         <div class="col-sm-12">
             <form class="form-inline" action="" style="margin-bottom: 20px">
-                {{--<div class="form-group">--}}
-                    {{--<input type="text" class="form-control"  placeholder="Tên sản phẩm ..." name="name" value="{{ \Request::get('name') }}">--}}
-                {{--</div>--}}
+                <div class="form-group">
+                    <input type="text" class="form-control"  placeholder="Mã đơn hàng ..." name="code" value="{{ \Request::get('code') }}">
+                </div>
                 <div class="form-group col-sm-4" style="display: inline-block">
                     <input style="width: 100%" type="text" id="dates" name="dates" value="{{ Request::query('dates') }}" class="form-control" autocomplete="off" placeholder="vd : 10/29/2018 - 10/29/2018">
                 </div>

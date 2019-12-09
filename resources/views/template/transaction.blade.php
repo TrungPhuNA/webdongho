@@ -1,5 +1,4 @@
 @extends('template.layout')
-
 @section('content')
     <section>
         <div class="tp_container">
@@ -74,5 +73,5 @@
             </div>
         </div>
     </section>
-    
+
 @stop

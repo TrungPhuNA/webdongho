@@ -28,6 +28,9 @@ class AdminTransactionController extends Controller
 			$transactionsTotal->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
 			$transactions->whereBetween(DB::raw('DATE(created_at)'),array($date['start'],$date['end']));
 		}
+        if ($id = $request->code) {
+            $transactions->where('id', $id);
+        }
 
 		if ($request->status)
 		{

@@ -15,8 +15,9 @@ class FrontendController extends Controller
             ->where('c_active',Category::STATUS_PUBLIC)
             ->whereNull('c_parent_id')
             ->get();
+		
         View::share('categories', $categories);
-        
+
         $categoriesHot = Category::with('children:id,c_name,c_slug,c_parent_id')
             ->where('c_home',Category::HOME)
             ->get();
