@@ -26,18 +26,21 @@ class ShoppingCartController extends FrontendController
 
 	    if (!$product) return redirect('/');
 
+        if ($product->pro_number == 0 )
+        {
+            return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
+        }
+
 	    $price = $product->pro_price;
 	    if ($product->pro_sale)
 		{
 			$price =  $price * (100 - $product->pro_sale)/ 100;
 		}
+        $qty = $request->qty ? $request->qty :  1;
 
-		if ($product->pro_number == 0 )
-		{
-			return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
-		}
-
-		$qty = $request->qty ? $request->qty :  1;
+        if ($product->pro_number < $qty) {
+            return redirect()->back()->with('danger','Số lượng sản phẩm không đủ');
+        }
 
 		\Cart::instance('cart')->add([
 			'id'      => $id,
@@ -123,7 +126,16 @@ class ShoppingCartController extends FrontendController
 	 */
 	public function updateShoppingCart(Request $request, $id)
 	{
-		\Cart::instance('cart')->update($id, ['qty' => $request->qty]);
+        $itemCart = \Cart::instance('cart')->get($id);
+        if (!$itemCart) {
+            return redirect()->back()->with('danger','Không tồn tại');
+        }
+        $product = Product::find($itemCart->id);
+        $qty = $request->qty;
+        if ($product->pro_number < $qty) {
+            return redirect()->back()->with('danger','Số lượng sản phẩm không đủ');
+        }
+		\Cart::instance('cart')->update($id, ['qty' => $qty]);
 		return redirect()->back()->with('success','Cập nhật thành công');
 	}
 

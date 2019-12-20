@@ -13,7 +13,7 @@ class SearchController extends FrontendController
     {
         // Lấy danh mục
         $cateProduct = [];
-        if ($id = $request->cate) {
+        if ($id = $request->c) {
             $cateProduct = Category::findOrFail($id);
             $categoryChildren = Category::where('c_parent_id', $id)->get();
         }

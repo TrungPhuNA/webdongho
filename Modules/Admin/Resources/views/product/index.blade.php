@@ -65,14 +65,6 @@
                                  <ul style="padding-left: 15px;">
                                      <li><span style="width: 20px;margin-right: 10px"><i class="fas fa-dollar-sign" style="font-size: 11px"></i></span><span>{{ number_format($product->pro_price,0,',','.') }} (đ)</span></li>
                                      <li><span style="width: 20px;margin-right: 10px"><i class="fas fa-dollar-sign" style="font-size: 11px"></i></span><span>{{ $product->pro_sale }} (%)</span></li>
-                                     <li><span>Đánh giá : </span>
-                                         <span class="rating">
-                                             @for($i = 1 ; $i <= 5 ; $i ++)
-                                                 <i class="fa fa-star {{ $i <= $age ? 'active' : '' }}" style="color: #999"></i>
-                                             @endfor
-                                         </span>
-                                         <span>{{ $age }}</span>
-                                     </li>
                                      <li><span>Số lượng </span> <span>{{ $product->pro_number }}</span></li>
                                  </ul>
                              </td>

@@ -1,5 +1,10 @@
 @extends('layouts.master')
 @section('title_page','Đăng nhập')
+<style>
+    .text-error {
+        color: red;
+    }
+</style>
 @section('content')
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
@@ -27,19 +32,31 @@
                         <h2>Đăng ký</h2>
                         <div class="form-group">
                             <label for="username">Họ tên <span class="required">*</span></label>
-                            <input type="text" required class="input-text form-control" name="name" id="username" value="">
+                            <input type="text" required class="input-text form-control" name="name" id="username" value="{{ old('name') }}">
+                            @if ($errors->has('name'))
+                                    <span class="help-block text-error">{{ $errors->first('name') }}</span>
+                                @endif
                         </div>
                         <div class="form-group">
                             <label for="username">Email <span class="required">*</span></label>
-                            <input type="text" required class="input-text form-control" name="email" id="username" value="">
+                            <input type="text" required class="input-text form-control" name="email" id="username" value="{{ old('email') }}">
+                            @if ($errors->has('email'))
+                                    <span class="help-block text-error">{{ $errors->first('email') }}</span>
+                                @endif
                         </div>
                         <div class="form-group">
                             <label for="password">Password <span class="required">*</span></label>
-                            <input class="input-text form-control" required type="password" name="password" id="password">
+                            <input class="input-text form-control" required type="password" name="password" >
+                            @if ($errors->has('password'))
+                                    <span class="help-block text-error">{{ $errors->first('password') }}</span>
+                                @endif
                         </div>
                         <div class="form-group">
                             <label for="username">Số điện thoại <span class="required">*</span></label>
-                            <input type="text" required class="input-text form-control" name="phone" id="username" value="">
+                            <input type="text" required class="input-text form-control" name="phone" id="username" value="{{ old('phone') }}">
+                            @if ($errors->has('phone'))
+                                    <span class="help-block text-error">{{ $errors->first('phone') }}</span>
+                                @endif
                         </div>
                     </div>
                     <div class="form-action">

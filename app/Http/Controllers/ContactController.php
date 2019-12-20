@@ -12,13 +12,18 @@ class ContactController extends FrontendController
 	{
 		return view('contact');
 	}
-	
+
 	public function saveContact(Request $request)
 	{
 		$data = $request->except('_token');
 		$data['created_at'] = $data['updated_at']  = Carbon::now();
-		Contact::insert($data);
-		
-		return redirect()->back();
+
+		try{
+            Contact::insert($data);
+        }catch (\Exception $exception) {
+		    return redirect()->back()->with('warning','Gủi liên hệ thất bại');
+        }
+
+		return redirect()->back()->with('success','Gửi liên hệ thành công');;
 	}
 }

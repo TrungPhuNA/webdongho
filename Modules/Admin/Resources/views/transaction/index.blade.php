@@ -85,7 +85,7 @@
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" style="width: 1000px">
                 <div class="modal-header ">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Chi tiết mã đơn hàng #<b class="transaciont_id"></b></h4>

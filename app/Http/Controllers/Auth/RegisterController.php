@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\FrontendController;
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -31,7 +32,7 @@ class RegisterController extends FrontendController
 		return view('auth.register');
 	}
 
-	public function postRegister(Request $request)
+	public function postRegister(RegisterRequest $request)
 	{
 		$user = new User();
 		$user->name = $request->name;
@@ -42,23 +43,6 @@ class RegisterController extends FrontendController
 
 		if ($user->id)
 		{
-			// $email = $user->email;
-			//
-			// $code = bcrypt(md5(time().$email));
-			// $url = route('user.verify.account',['id' => $user->id,'code' => $code]);
-			//
-			// $user->code_active = $code;
-			// $user->time_active = Carbon::now();
-			// $user->save();
-			//
-			// $data = [
-			// 	'route' => $url
-			// ];
-			//
-			// Mail::send('email.verify_account', $data, function($message) use ($email){
-			// 	$message->to($email, 'Xác nhận tài khoản')->subject('Xác nhận tài khoản');
-			// });
-
             if (\Auth::guard('web')->loginUsingId($user->id))
             {
                 return redirect('/');

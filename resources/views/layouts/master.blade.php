@@ -64,7 +64,7 @@
                             <select class="input-select" name="c">
                                 <option value="0">All Categories</option>
                                 @foreach($categoriesAll as $cate)
-                                    <option value="{{ $cate->id }}" {{ Request::get('cate') == $cate->id ? "selected='selected'" : "" }}>{{ $cate->c_name }}</option>
+                                    <option value="{{ $cate->id }}" {{ Request::get('c') == $cate->id ? "selected='selected'" : "" }}>{{ $cate->c_name }}</option>
                                 @endforeach
                             </select>
                             <input class="input" placeholder="Nhập từ khoá tìm kiếm" name="k" value="{{ Request::get('k') }}">
@@ -177,6 +177,7 @@
         <strong>Thất bại! </strong> {{ \Session::get('danger') }}
     </div>
 @endif
+
 @yield('content')
 
 <!-- FOOTER -->

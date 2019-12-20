@@ -9,7 +9,7 @@
             <div class="article_info" style="width: 80%;margin-left: 20px">
                 <h2 style="font-size: 14px"><a href="{{ route('get.detail.article',[$article->a_slug,$article->id]) }}">{{ $article->a_name }}</a></h2>
                 <p style="font-size: 13px">{{ $article->a_description }}</p>
-                <p>admin <span>{{ $article->created_at }}</span></p>
+                <p>Admin <span>{{ $article->created_at }}</span></p>
             </div>
         </div>
     @endforeach

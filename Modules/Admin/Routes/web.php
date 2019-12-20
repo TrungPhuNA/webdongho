@@ -14,20 +14,20 @@
 Route::prefix('authenticate')->group(function(){
 	Route::get('/login', 'AdminAuthController@getLogin')->name('admin.login');
 	Route::post('/login', 'AdminAuthController@postLogin');
-	
+
 	Route::get('/dang-xuat', 'AdminAuthController@logoutAdmin')->name('admin.logout');
 });
 
 Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
-    
+
     Route::group(['prefix' => 'category'], function(){
     	Route::get('/','AdminCategoryController@index')->name('admin.get.list.category');
 		Route::get('/create','AdminCategoryController@create')->name('admin.get.create.category');
 		Route::post('/create','AdminCategoryController@store');
 		Route::get('/update/{id}','AdminCategoryController@edit')->name('admin.get.edit.category');
 		Route::post('/update/{id}','AdminCategoryController@update');
-	
+
 		Route::get('/{action}/{id}','AdminCategoryController@action')->name('admin.get.action.category');
 	});
 
@@ -40,7 +40,7 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 
         Route::get('delete/{id}','AdminSupplierController@delete')->name('admin.get.delete.supplier');
     });
-	
+
 	Route::group(['prefix' => 'product'], function(){
 		Route::get('/','AdminProductController@index')->name('admin.get.list.product');
 		Route::get('/create','AdminProductController@create')->name('admin.get.create.product');
@@ -64,6 +64,16 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
         Route::get('delete/{id}','AdminMenuController@delete')->name('admin.get.delete.menu');
     });
 
+    Route::group(['prefix' => 'admin'], function(){
+        Route::get('/','AdminAdminController@index')->name('admin.get.list.admin');
+        Route::get('/create','AdminAdminController@create')->name('admin.get.create.admin');
+        Route::post('/create','AdminAdminController@store');
+        Route::get('/update/{id}','AdminAdminController@edit')->name('admin.get.edit.admin');
+        Route::post('/update/{id}','AdminAdminController@update');
+
+        Route::get('delete/{id}','AdminAdminController@delete')->name('admin.get.delete.admin');
+    });
+
 	// bai viet
 	Route::group(['prefix' => 'article'], function(){
 		Route::get('/','AdminArticleController@index')->name('admin.get.list.article');
@@ -72,17 +82,15 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('/update/{id}','AdminArticleController@edit')->name('admin.get.edit.article');
 		Route::post('/update/{id}','AdminArticleController@update');
 		Route::get('/delete/{id}','AdminArticleController@delete')->name('admin.get.delete.article');
-		
-		
 		Route::get('/{action}/{id}','AdminArticleController@action')->name('admin.get.action.article');
 	});
-	
+
 	//kho hang
-	
+
 	Route::group(['prefix' => 'warehouse'],function(){
 		Route::get('/','AdminWarehouseController@getWarehouseProduct')->name('admin.get.warehouse.list');
 	});
-	
+
 	// ql don hang
 	Route::group(['prefix' => 'transaction'], function(){
 		Route::get('/','AdminTransactionController@index')->name('admin.get.list.transaction');
@@ -90,25 +98,25 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 		Route::get('/delete/{id}','AdminTransactionController@delete')->name('admin.get.delete.order');
 		Route::get('/active/{id}','AdminTransactionController@actionTransaction')->name('admin.get.active.transaction');
 	});
-	
+
 	// ql thanh vien
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/','AdminUserController@index')->name('admin.get.list.user');
         Route::get('/delete/{id}','AdminUserController@delete')->name('admin.get.delete.user');
 	});
-	
+
 	// ql danh gia
 	Route::group(['prefix' => 'rating'], function(){
 		Route::get('/','AdminRatingController@index')->name('admin.get.list.rating');
 	});
-	
+
 	// quan ly lien he
-	
+
 	Route::group(['prefix' => 'contact'],function (){
 	     Route::get('/','AdminContactController@index')->name('admin.get.list.contact');
 		Route::get('/action/{name}/{id}','AdminContactController@action')->name('admin.action.contact');
 	});
-	
+
 	Route::group(['prefix' => 'page-static'],function (){
 		Route::get('/','AdminPageStaticController@index')->name('admin.get.list.page_static');
 		Route::get('/create','AdminPageStaticController@create')->name('admin.get.create.page_static');

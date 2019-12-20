@@ -170,6 +170,9 @@
             page-break-before: always
         }
     }
+    .name a:hover {
+        text-decoration: none;
+    }
 </style>
 <div id="invoice">
 
@@ -222,7 +225,7 @@
                                 <td class="no">{{ $key + 1 }}</td>
                                 <td class="text-left">
                                     <h3>
-                                        <a target="_blank" href="">{{ isset($item->product->pro_name) ? $item->product->pro_name  : "[N\A]" }}</a>
+                                        <a target="_blank" href="" class="name" style="text-decoration: none">{{ isset($item->product->pro_name) ? $item->product->pro_name  : "[N\A]" }}</a>
                                     </h3>
                                     <p>{{ $item->pro_description }}</p>
                                 </td>
